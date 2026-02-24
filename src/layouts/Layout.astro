@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Smoothie",
+  description = "Smoothie — il giusto mix che ridefinisce i confini del tuo brand.",
+} = Astro.props;
+---
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <style>
+      /* Anti-FOUC: elementi motion nascosti fino a init GSAP.
+         GSAP autoAlpha li rivela (visibility:visible + opacity:1). */
+      [data-motion],
+      [data-motion-item],
+      [data-cursor-target],
+      [data-showcase-image],
+      [data-showcase-slider],
+      [data-showcase-final] {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      id="main-header"
+      class="fixed z-50 top-0 left-8 right-8 h-20 flex justify-between items-center px-8 py-4 pointer-events-none"
+    >
+      <span class="text-2xl font-bold bg-white pointer-events-auto">Smoothie</span>
+      <nav class="hidden lg:block bg-white pointer-events-auto">
+        <ul class="flex space-x-4">
+          <li>
+            <a
+              href="/"
+              class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about"
+              class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <script>
+      import "../motion/init";
+    </script>
+  </body>
+</html>

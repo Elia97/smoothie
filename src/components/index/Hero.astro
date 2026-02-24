@@ -1,0 +1,54 @@
+---
+
+---
+
+<section
+  data-motion-cursor-follow
+  class="relative min-h-screen flex flex-col items-center justify-center gap-6 px-4 overflow-hidden"
+>
+  <!-- Cursor-follow sphere -->
+  <div
+    data-cursor-target
+    class="absolute w-175 h-175 rounded-full pointer-events-none"
+    style="background: radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(59,130,246,0.5) 60%, rgba(59,130,246,0.4) 100%); box-shadow: 0 0 80px 40px rgba(255,255,255,0.3), 0 0 160px 80px rgba(255,255,255,0.15); z-index: 0;"
+  >
+  </div>
+
+  <h1
+    data-motion="fade-in"
+    class="relative z-10 text-3xl sm:text-4xl lg:text-6xl font-bold text-center leading-snug tracking-tight"
+  >
+    Siamo il giusto <i class="font-thin">mix</i>
+    <br /> che ridefinisce i confini <br /> del tuo <i class="font-thin"
+      >brand</i
+    >
+  </h1>
+
+  <span class="absolute bottom-4">Scroll to explore</span>
+</section>
+
+<script>
+  import { initGSAP, gsap } from "../../motion/engine/gsap-core";
+  import { createScrollAnimation } from "../../motion/engine/scroll-engine";
+
+  initGSAP();
+
+  const section = document.querySelector<HTMLElement>(
+    "[data-motion-cursor-follow]",
+  );
+  const sphere = document.querySelector<HTMLElement>("[data-cursor-target]");
+
+  if (section && sphere) {
+    const tl = gsap.timeline();
+    tl.to(sphere, { autoAlpha: 0, duration: 1 });
+
+    createScrollAnimation({
+      trigger: section,
+      animation: tl,
+      start: "bottom bottom",
+      end: "bottom top",
+      scrub: 1,
+      pin: false,
+    });
+  }
+</script>

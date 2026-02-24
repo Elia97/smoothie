@@ -1,0 +1,92 @@
+---
+
+---
+
+<section
+  class="min-h-screen flex flex-col justify-center gap-12 md:gap-16 overflow-hidden"
+>
+  <!-- Testo centrato, schiacciato in alto -->
+  <div
+    data-motion="fade-in"
+    class="grid grid-cols-2 container mx-auto items-center px-4 pt-12 md:pt-20"
+  >
+    <h2
+      class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6"
+    >
+      la passione per il <br /> Prosecco <br /> dal cuore <br /> di Valdobbiadene
+    </h2>
+    <p
+      class="text-base md:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto"
+    >
+      Un’azienda che custodisce il sapere della tradizione e lo trasforma in
+      eccellenza. Dai vigneti alle bollicine, Cantine Vedova racconta
+      l’autenticità del territorio con uno stile raffinato, sostenuto da
+      un’identità visiva che abbiamo curato per rispecchiare la qualità del
+      prodotto e della tradizione
+    </p>
+  </div>
+
+  <!-- Carosello marquee -->
+  <div class="relative pb-4">
+    <div class="marquee">
+      <div class="marquee-track items-center">
+        <!-- Set 1 (12 items per coprire schermi fino a 2560px+) -->
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-emerald-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-teal-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-lime-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-green-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-cyan-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-sky-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-violet-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-fuchsia-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-rose-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-amber-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-indigo-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-pink-400/60"></div>
+        <!-- Set 2 (duplicato per loop continuo) -->
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-emerald-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-teal-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-lime-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-green-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-cyan-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-sky-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-violet-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-fuchsia-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-rose-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-amber-400/60"></div>
+        <div class="shrink-0 w-40 aspect-9/16 rounded-2xl bg-indigo-400/60"></div>
+        <div class="shrink-0 w-40 aspect-square rounded-2xl bg-pink-400/60"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    will-change: transform;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

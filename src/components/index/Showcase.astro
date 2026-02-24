@@ -1,0 +1,224 @@
+---
+
+---
+
+<section id="showcase" class="relative h-[300vh]">
+  <div
+    class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden"
+  >
+    <!-- Images -->
+    <div
+      data-showcase-image
+      class="absolute bottom-[5%] left-[5%] w-40 md:w-60 lg:w-80 aspect-video rounded-2xl bg-violet-400/60"
+    >
+    </div>
+    <div
+      data-showcase-image
+      class="absolute bottom-[35%] left-[8%] w-28 md:w-40 lg:w-50 aspect-square rounded-2xl bg-blue-400/60"
+    >
+    </div>
+    <div
+      data-showcase-image
+      class="hidden sm:block absolute top-[10%] left-[20%] lg:left-[30%] w-24 md:w-32 lg:w-40 aspect-square rounded-2xl bg-indigo-400/60"
+    >
+    </div>
+    <div
+      data-showcase-image
+      class="hidden sm:block absolute top-[15%] right-[20%] lg:right-[30%] w-20 md:w-24 lg:w-32 aspect-square rounded-2xl bg-purple-400/60"
+    >
+    </div>
+    <div
+      data-showcase-image
+      class="absolute bottom-[20%] right-[15%] lg:right-[25%] w-32 md:w-40 lg:w-50 aspect-video rounded-2xl bg-sky-400/60"
+    >
+    </div>
+    <div
+      data-showcase-image
+      class="absolute bottom-[5%] right-[5%] w-28 md:w-40 lg:w-50 aspect-square rounded-2xl bg-cyan-400/60"
+    >
+    </div>
+
+    <!-- Sliding image (fase 1: top-right, fase 2: nella grid) -->
+    <div
+      data-showcase-slider
+      class="absolute top-[10%] right-[5%] w-28 md:w-36 lg:w-44 aspect-9/16 rounded-2xl bg-rose-400/60"
+    >
+    </div>
+
+    <!-- Title + CTA (fase 1) -->
+    <div data-showcase-content class="relative z-10 text-center">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-8"
+      >
+        Elevate<br /> your brand with <br /> flavorful touch
+      </h2>
+      <a
+        href="#contact"
+        class="inline-block px-8 py-2 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors"
+      >
+        EXPLORE MORE
+      </a>
+    </div>
+
+    <!-- Layout finale (fase 2) — grid con immagine a sx e testo a dx -->
+    <div
+      data-showcase-final
+      class="absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 items-center gap-4 md:gap-8 px-6 md:px-12 lg:px-20 z-10"
+    >
+      <!-- Riga/colonna per lo slider -->
+      <div></div>
+      <!-- Riga/colonna testo -->
+      <div class="text-center md:text-left self-start md:self-center pt-0">
+        <h3
+          class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6"
+        >
+          Eleganza, <br /> innovazione
+        </h3>
+        <p class="text-base max-w-md md:text-lg text-gray-600 leading-relaxed">
+          Abbiamo trasformato l'eleganza e l'innovazione di un colosso
+          dell'eyewear in un racconto visivo mozzafiato, dando vita alle
+          collezioni dei brand più iconici attraverso una serie di video che
+          esaltano stile, carattere e unicità
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import {
+    initGSAP,
+    gsap,
+    createContext,
+    prefersReducedMotion,
+  } from "../../motion/engine/gsap-core";
+  import { createScrollAnimation } from "../../motion/engine/scroll-engine";
+  import { DURATION, EASE } from "../../motion/presets";
+
+  initGSAP();
+
+  // Defer setup dopo il first paint (stesso timing di init.ts)
+  // per garantire che il DOM sia stabile e le dimensioni calcolabili.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      setupShowcase();
+    });
+  });
+
+  function setupShowcase(): void {
+    const section = document.querySelector<HTMLElement>("#showcase");
+    if (!section) return;
+
+    const reduced = prefersReducedMotion();
+    const images = section.querySelectorAll<HTMLElement>(
+      "[data-showcase-image]",
+    );
+    const slider = section.querySelector<HTMLElement>("[data-showcase-slider]");
+
+    const content = section.querySelector<HTMLElement>(
+      "[data-showcase-content]",
+    );
+    const finalText = section.querySelector<HTMLElement>(
+      "[data-showcase-final]",
+    );
+
+    createContext(section, () => {
+      const dur = reduced ? 0.15 : DURATION.normal;
+      const ease = reduced ? EASE.linear : EASE.bounce;
+      const tl = gsap.timeline();
+
+      // Stato iniziale
+      gsap.set(images, { autoAlpha: 0, scale: 0.8 });
+      if (slider) gsap.set(slider, { autoAlpha: 0, scale: 0.8 });
+      if (finalText) gsap.set(finalText, { autoAlpha: 0, x: 40 });
+
+      // ── Fase 1: Reveal immagini, slider per ultimo ──
+      images.forEach((img, i) => {
+        tl.fromTo(
+          img,
+          { autoAlpha: 0, scale: 0.8 },
+          { autoAlpha: 1, scale: 1, duration: dur, ease },
+          i === 0 ? 0 : `<0.15`,
+        );
+      });
+
+      // Slider appare come ultimo elemento della fase 1
+      if (slider) {
+        tl.fromTo(
+          slider,
+          { autoAlpha: 0, scale: 0.8 },
+          { autoAlpha: 1, scale: 1, duration: dur, ease },
+          `<0.15`,
+        );
+      }
+
+      const phase1End = tl.duration();
+
+      // ── Fase 2: Fade out contenuto iniziale, slider nella grid, testo finale ──
+      // Fade out 6 immagini + titolo/CTA
+      tl.to(
+        [...images, content].filter(Boolean),
+        {
+          autoAlpha: 0,
+          duration: dur,
+          ease: reduced ? EASE.linear : EASE.smooth,
+        },
+        phase1End,
+      );
+
+      // Slider: si sposta nella riga/colonna sinistra della grid.
+      // Offset calcolati UNA VOLTA dalla posizione CSS originale
+      // (prima di qualsiasi transform GSAP) per evitare drift su reload/resize.
+      if (slider) {
+        const isMd = window.matchMedia("(min-width: 768px)").matches;
+        const container = slider.offsetParent as HTMLElement;
+        const viewW = container.clientWidth;
+        const viewH = container.clientHeight;
+
+        // Posizione CSS originale del centro (offsetLeft/Top non include transforms)
+        const origCenterX = slider.offsetLeft + slider.offsetWidth / 2;
+        const origCenterY = slider.offsetTop + slider.offsetHeight / 2;
+
+        // Target: desktop = centro colonna sinistra, mobile = centro schermo
+        const targetX = isMd ? viewW * 0.25 : viewW * 0.5;
+        const targetY = isMd ? viewH * 0.5 : viewH * 0.3;
+
+        tl.to(
+          slider,
+          {
+            x: targetX - origCenterX,
+            y: targetY - origCenterY,
+            scale: isMd ? 2 : 1.6,
+            duration: dur * 2,
+            ease: reduced ? EASE.linear : EASE.inOut,
+          },
+          phase1End,
+        );
+      }
+
+      // Testo finale (grid): appare
+      if (finalText) {
+        tl.fromTo(
+          finalText,
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            duration: dur,
+            ease: reduced ? EASE.linear : EASE.smooth,
+          },
+          `>${-dur * 0.5}`,
+        );
+      }
+
+      // ScrollTrigger senza pin — il sticky CSS gestisce il "pin" visivo
+      createScrollAnimation({
+        trigger: section,
+        animation: tl,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: reduced ? false : 1,
+        pin: false,
+      });
+    });
+  }
+</script>
