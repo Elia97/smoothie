@@ -28,27 +28,27 @@ const MOTION_DEFS: Record<
   { from: gsap.TweenVars; to: gsap.TweenVars }
 > = {
   'fade-in': {
-    from: { autoAlpha: 0, y: 30 },
+    from: { autoAlpha: 0, y: 60 },
     to: { autoAlpha: 1, y: 0, duration: DURATION.normal, ease: EASE.smooth },
   },
   'slide-up': {
-    from: { autoAlpha: 0, y: 60 },
+    from: { autoAlpha: 0, y: 100 },
     to: { autoAlpha: 1, y: 0, duration: DURATION.normal, ease: EASE.snap },
   },
   'slide-down': {
-    from: { autoAlpha: 0, y: -60 },
+    from: { autoAlpha: 0, y: -100 },
     to: { autoAlpha: 1, y: 0, duration: DURATION.normal, ease: EASE.snap },
   },
   'slide-left': {
-    from: { autoAlpha: 0, x: 80 },
+    from: { autoAlpha: 0, x: 120 },
     to: { autoAlpha: 1, x: 0, duration: DURATION.normal, ease: EASE.snap },
   },
   'slide-right': {
-    from: { autoAlpha: 0, x: -80 },
+    from: { autoAlpha: 0, x: -120 },
     to: { autoAlpha: 1, x: 0, duration: DURATION.normal, ease: EASE.snap },
   },
   'scale-in': {
-    from: { autoAlpha: 0, scale: 0.7 },
+    from: { autoAlpha: 0, scale: 0.5 },
     to: {
       autoAlpha: 1,
       scale: 1,

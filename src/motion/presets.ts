@@ -4,8 +4,8 @@
 
 export const DURATION = {
   instant: 0.2,
-  fast: 0.5,
-  normal: 0.8,
+  fast: 0.6,
+  normal: 1.0,
   slow: 1.2,
   hero: 1.6,
 } as const;

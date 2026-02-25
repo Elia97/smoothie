@@ -4,6 +4,7 @@
 // ============================================================
 
 import { initPageMotion } from './orchestrators/page-orchestrator';
+import { initLenis, destroyLenis } from './engine/lenis-smooth';
 
 let ctx: gsap.Context | null = null;
 
@@ -13,8 +14,10 @@ function boot(): void {
     ctx.revert();
     ctx = null;
   }
+  destroyLenis();
 
   ctx = initPageMotion();
+  initLenis();
 }
 
 // Defer boot dopo il first paint del browser.

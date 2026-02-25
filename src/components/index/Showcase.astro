@@ -2,46 +2,79 @@
 
 ---
 
-<section id="showcase" class="relative h-[300vh]">
+<section id="showcase" class="relative min-h-screen md:h-[300vh]">
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- MOBILE: layout statico con animazioni dichiarative -->
+  <!-- ═══════════════════════════════════════════ -->
   <div
-    class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden"
+    class="md:hidden flex flex-col items-center justify-center min-h-screen gap-8 px-4"
   >
-    <!-- Images -->
+    <div
+      data-motion="scale-in"
+      class="w-full max-w-sm aspect-video rounded-2xl bg-rose-400/60"
+    >
+    </div>
+    <div class="text-center">
+      <h2
+        data-motion="fade-in"
+        class="text-3xl sm:text-4xl font-bold tracking-tight mb-8"
+      >
+        Elevate<br /> your brand with <br /> flavorful touch
+      </h2>
+      <a
+        href="#"
+        data-motion="fade-in"
+        data-motion-delay="0.15"
+        class="inline-block px-8 py-2 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors"
+      >
+        EXPLORE MORE
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- DESKTOP: scroll-driven con immagini scatter -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div
+    data-showcase-desktop
+    class="hidden md:flex sticky top-0 h-screen flex-col items-center justify-center overflow-hidden"
+  >
+    <!-- Scatter images -->
     <div
       data-showcase-image
-      class="absolute bottom-[5%] left-[5%] w-40 md:w-60 lg:w-80 aspect-video rounded-2xl bg-violet-400/60"
+      class="absolute bottom-[5%] left-[5%] w-60 lg:w-80 aspect-video rounded-2xl bg-violet-400/60"
     >
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[35%] left-[8%] w-28 md:w-40 lg:w-50 aspect-square rounded-2xl bg-blue-400/60"
+      class="absolute bottom-[35%] left-[8%] w-40 lg:w-50 aspect-square rounded-2xl bg-blue-400/60"
     >
     </div>
     <div
       data-showcase-image
-      class="hidden sm:block absolute top-[10%] left-[20%] lg:left-[30%] w-24 md:w-32 lg:w-40 aspect-square rounded-2xl bg-indigo-400/60"
+      class="absolute top-[10%] left-[20%] lg:left-[30%] w-32 lg:w-40 aspect-square rounded-2xl bg-indigo-400/60"
     >
     </div>
     <div
       data-showcase-image
-      class="hidden sm:block absolute top-[15%] right-[20%] lg:right-[30%] w-20 md:w-24 lg:w-32 aspect-square rounded-2xl bg-purple-400/60"
+      class="absolute top-[15%] right-[20%] lg:right-[30%] w-24 lg:w-32 aspect-square rounded-2xl bg-purple-400/60"
     >
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[20%] right-[15%] lg:right-[25%] w-32 md:w-40 lg:w-50 aspect-video rounded-2xl bg-sky-400/60"
+      class="absolute bottom-[20%] right-[15%] lg:right-[25%] w-40 lg:w-50 aspect-video rounded-2xl bg-sky-400/60"
     >
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[5%] right-[5%] w-28 md:w-40 lg:w-50 aspect-square rounded-2xl bg-cyan-400/60"
+      class="absolute bottom-[5%] right-[5%] w-40 lg:w-50 aspect-square rounded-2xl bg-cyan-400/60"
     >
     </div>
 
     <!-- Sliding image (fase 1: top-right, fase 2: nella grid) -->
     <div
       data-showcase-slider
-      class="absolute top-[10%] right-[5%] w-28 md:w-36 lg:w-44 aspect-9/16 rounded-2xl bg-rose-400/60"
+      class="absolute top-[10%] right-[5%] w-36 lg:w-44 aspect-9/16 rounded-2xl bg-rose-400/60"
     >
     </div>
 
@@ -53,22 +86,22 @@
         Elevate<br /> your brand with <br /> flavorful touch
       </h2>
       <a
-        href="#contact"
+        href="#"
         class="inline-block px-8 py-2 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors"
       >
         EXPLORE MORE
       </a>
     </div>
 
-    <!-- Layout finale (fase 2) — grid con immagine a sx e testo a dx -->
+    <!-- Layout finale (fase 2) — grid 2 col con slider a sx e testo a dx -->
     <div
       data-showcase-final
-      class="absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 items-center gap-4 md:gap-8 px-6 md:px-12 lg:px-20 z-10"
+      class="absolute inset-0 grid grid-cols-2 items-center gap-8 px-12 lg:px-20 z-10"
     >
-      <!-- Riga/colonna per lo slider -->
+      <!-- Colonna per lo slider -->
       <div></div>
-      <!-- Riga/colonna testo -->
-      <div class="text-center md:text-left self-start md:self-center pt-0">
+      <!-- Testo -->
+      <div class="text-left">
         <h3
           class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6"
         >
@@ -97,8 +130,6 @@
 
   initGSAP();
 
-  // Defer setup dopo il first paint (stesso timing di init.ts)
-  // per garantire che il DOM sia stabile e le dimensioni calcolabili.
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       setupShowcase();
@@ -109,12 +140,15 @@
     const section = document.querySelector<HTMLElement>("#showcase");
     if (!section) return;
 
+    // Su mobile le animazioni sono dichiarative (data-motion) — niente script
+    const isMd = window.matchMedia("(min-width: 768px)").matches;
+    if (!isMd) return;
+
     const reduced = prefersReducedMotion();
     const images = section.querySelectorAll<HTMLElement>(
       "[data-showcase-image]",
     );
     const slider = section.querySelector<HTMLElement>("[data-showcase-slider]");
-
     const content = section.querySelector<HTMLElement>(
       "[data-showcase-content]",
     );
@@ -142,7 +176,6 @@
         );
       });
 
-      // Slider appare come ultimo elemento della fase 1
       if (slider) {
         tl.fromTo(
           slider,
@@ -155,7 +188,6 @@
       const phase1End = tl.duration();
 
       // ── Fase 2: Fade out contenuto iniziale, slider nella grid, testo finale ──
-      // Fade out 6 immagini + titolo/CTA
       tl.to(
         [...images, content].filter(Boolean),
         {
@@ -166,29 +198,24 @@
         phase1End,
       );
 
-      // Slider: si sposta nella riga/colonna sinistra della grid.
-      // Offset calcolati UNA VOLTA dalla posizione CSS originale
-      // (prima di qualsiasi transform GSAP) per evitare drift su reload/resize.
+      // Slider: si sposta nella colonna sinistra della grid
       if (slider) {
-        const isMd = window.matchMedia("(min-width: 768px)").matches;
         const container = slider.offsetParent as HTMLElement;
         const viewW = container.clientWidth;
         const viewH = container.clientHeight;
 
-        // Posizione CSS originale del centro (offsetLeft/Top non include transforms)
         const origCenterX = slider.offsetLeft + slider.offsetWidth / 2;
         const origCenterY = slider.offsetTop + slider.offsetHeight / 2;
 
-        // Target: desktop = centro colonna sinistra, mobile = centro schermo
-        const targetX = isMd ? viewW * 0.25 : viewW * 0.5;
-        const targetY = isMd ? viewH * 0.5 : viewH * 0.3;
+        const targetX = viewW * 0.25;
+        const targetY = viewH * 0.5;
 
         tl.to(
           slider,
           {
             x: targetX - origCenterX,
             y: targetY - origCenterY,
-            scale: isMd ? 2 : 1.6,
+            scale: 2,
             duration: dur * 2,
             ease: reduced ? EASE.linear : EASE.inOut,
           },
@@ -196,7 +223,7 @@
         );
       }
 
-      // Testo finale (grid): appare
+      // Testo finale: appare
       if (finalText) {
         tl.fromTo(
           finalText,
@@ -210,7 +237,6 @@
         );
       }
 
-      // ScrollTrigger senza pin — il sticky CSS gestisce il "pin" visivo
       createScrollAnimation({
         trigger: section,
         animation: tl,

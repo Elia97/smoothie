@@ -1,0 +1,121 @@
+---
+
+---
+
+<section
+  class="flex flex-col justify-center gap-12 md:gap-16 overflow-hidden px-4"
+>
+  <div class="max-w-md mx-auto text-center">
+    <span
+      data-motion="fade-in"
+      class="text-sm sm:text-base text-center border w-fit mx-auto px-3 py-1 rounded-full mb-4 md:mb-6 block"
+    >
+      OUR CLIENT
+    </span>
+    <p
+      data-motion="fade-in"
+      data-motion-delay="0.15"
+      class="text-center sm:text-lg max-w-sm mx-auto"
+    >
+      I nostri clienti, straordinari artefici di storie di successo insieme a
+      noi
+    </p>
+  </div>
+
+  <!-- Carousel loghi clienti — doppia riga marquee -->
+  <div class="flex flex-col gap-4">
+    <!-- Riga 1: scorre a sinistra -->
+    <div class="marquee-partners">
+      <div class="marquee-partners-track">
+        <div class="partner-logo">Logo 1</div>
+        <div class="partner-logo">Logo 2</div>
+        <div class="partner-logo">Logo 3</div>
+        <div class="partner-logo">Logo 4</div>
+        <div class="partner-logo">Logo 5</div>
+        <div class="partner-logo">Logo 6</div>
+        <div class="partner-logo">Logo 7</div>
+        <div class="partner-logo">Logo 8</div>
+        <!-- Duplicato per loop continuo -->
+        <div class="partner-logo">Logo 1</div>
+        <div class="partner-logo">Logo 2</div>
+        <div class="partner-logo">Logo 3</div>
+        <div class="partner-logo">Logo 4</div>
+        <div class="partner-logo">Logo 5</div>
+        <div class="partner-logo">Logo 6</div>
+        <div class="partner-logo">Logo 7</div>
+        <div class="partner-logo">Logo 8</div>
+      </div>
+    </div>
+
+    <!-- Riga 2: scorre a destra (reverse) -->
+    <div class="marquee-partners">
+      <div class="marquee-partners-track marquee-partners-reverse">
+        <div class="partner-logo">Logo 9</div>
+        <div class="partner-logo">Logo 10</div>
+        <div class="partner-logo">Logo 11</div>
+        <div class="partner-logo">Logo 12</div>
+        <div class="partner-logo">Logo 13</div>
+        <div class="partner-logo">Logo 14</div>
+        <div class="partner-logo">Logo 15</div>
+        <div class="partner-logo">Logo 16</div>
+        <!-- Duplicato per loop continuo -->
+        <div class="partner-logo">Logo 9</div>
+        <div class="partner-logo">Logo 10</div>
+        <div class="partner-logo">Logo 11</div>
+        <div class="partner-logo">Logo 12</div>
+        <div class="partner-logo">Logo 13</div>
+        <div class="partner-logo">Logo 14</div>
+        <div class="partner-logo">Logo 15</div>
+        <div class="partner-logo">Logo 16</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-partners {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-partners-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-partners 30s linear infinite;
+  }
+
+  .marquee-partners-reverse {
+    animation-direction: reverse;
+  }
+
+  .partner-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 5rem;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  @keyframes marquee-partners {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-partners-track {
+      animation: none;
+    }
+  }
+</style>

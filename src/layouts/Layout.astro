@@ -29,7 +29,10 @@ const {
       [data-cursor-target],
       [data-showcase-image],
       [data-showcase-slider],
-      [data-showcase-final] {
+      [data-showcase-final],
+      [data-sphere-keyword],
+      [data-sphere-inner],
+      [data-sphere-cta] {
         visibility: hidden;
       }
     </style>
@@ -39,9 +42,12 @@ const {
       id="main-header"
       class="fixed z-50 top-0 left-8 right-8 h-20 flex justify-between items-center px-8 py-4 pointer-events-none"
     >
-      <span class="text-2xl font-bold bg-white pointer-events-auto">Smoothie</span>
-      <nav class="hidden lg:block bg-white pointer-events-auto">
-        <ul class="flex space-x-4">
+      <span
+        class="text-2xl font-bold bg-white pointer-events-auto px-3 py-1 rounded-full"
+        >Smoothie</span
+      >
+      <nav class="hidden lg:block bg-white pointer-events-auto rounded-full">
+        <ul class="flex space-x-4 rounded-full">
           <li>
             <a
               href="/"
@@ -66,11 +72,114 @@ const {
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="relative z-10 bg-white">
       <slot />
     </main>
+    <footer id="main-footer" class="sticky bottom-0 z-0 bg-black text-white">
+      <div class="container mx-auto px-4 py-8">
+        <!-- Top: contenuto principale -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
+          <!-- Sinistra: titolo, newsletter, contatto -->
+          <div class="flex flex-col gap-8">
+            <div>
+              <h2
+                class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
+              >
+                Let's talk
+              </h2>
+              <p
+                class="text-gray-400 text-base md:text-lg max-w-md leading-relaxed"
+              >
+                Let's make your brand unforgettable
+              </p>
+            </div>
+            <div class="flex flex-col gap-6">
+              <form class="flex gap-2 max-w-md flex-wrap">
+                <input
+                  type="email"
+                  placeholder="La tua email"
+                  class="flex-1 px-2 py-1 bg-white/10 border border-white/20 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-white/40 transition-colors"
+                />
+                <button
+                  type="submit"
+                  class="px-4 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-colors cursor-pointer"
+                >
+                  ISCRIVITI
+                </button>
+              </form>
+              <a
+                href="mailto:hello@smoothie.it"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                hello@smoothie.it
+              </a>
+            </div>
+          </div>
+
+          <!-- Destra: due colonne sedi -->
+          <div class="grid grid-cols-2 gap-8 lg:pt-2">
+            <div>
+              <h4
+                class="font-semibold text-sm uppercase tracking-wider mb-4 text-gray-400"
+              >
+                Milano
+              </h4>
+              <address class="not-italic text-sm leading-relaxed text-gray-300">
+                Via Monte Napoleone, 8<br />
+                20121 Milano MI<br />
+                Italia
+              </address>
+            </div>
+            <div>
+              <h4
+                class="font-semibold text-sm uppercase tracking-wider mb-4 text-gray-400"
+              >
+                Roma
+              </h4>
+              <address class="not-italic text-sm leading-relaxed text-gray-300">
+                Via del Corso, 120<br />
+                00186 Roma RM<br />
+                Italia
+              </address>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div
+          class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <span class="text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} Smoothie. Tutti i diritti riservati.
+          </span>
+          <div class="flex gap-6 text-sm text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Cookie Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >P.IVA 00000000000</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
     <script>
       import "../motion/init";
+
+      // Footer reveal: il main ha margin-bottom pari all'altezza del footer
+      // così il footer sticky si rivela da sotto il contenuto
+      function setFooterMargin(): void {
+        const footer = document.getElementById("main-footer");
+        const main = document.querySelector("main");
+        if (!footer || !main) return;
+        main.style.marginBottom = `${footer.offsetHeight}px`;
+      }
+
+      setFooterMargin();
+      window.addEventListener("resize", setFooterMargin);
     </script>
   </body>
 </html>
