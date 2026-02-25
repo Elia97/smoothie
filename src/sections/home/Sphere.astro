@@ -1,0 +1,103 @@
+---
+
+---
+
+<section id="sphere-section" class="relative h-[600vh]">
+  <div
+    class="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
+  >
+    <!-- Fase 1: Badge + 4 titoli -->
+    <div
+      data-sphere-titles
+      class="relative z-10 flex flex-col items-center gap-6 text-center px-4"
+    >
+      <span
+        data-sphere-badge
+        class="text-sm sm:text-base border w-fit px-3 py-1 rounded-full mb-4"
+      >
+        WHAT WE DO
+      </span>
+      <span
+        data-sphere-keyword
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight block"
+      >
+        CONSULTANCY
+      </span>
+      <span
+        data-sphere-keyword
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight block"
+      >
+        CREATIVE
+      </span>
+      <span
+        data-sphere-keyword
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight block"
+      >
+        COMMUNICATE
+      </span>
+      <span
+        data-sphere-keyword
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight block"
+      >
+        PERFORMANCE
+      </span>
+    </div>
+
+    <!-- Sfera -->
+    <div
+      data-sphere-orb
+      class="absolute rounded-full pointer-events-none"
+      style="
+        width: 120vw;
+        height: 120vw;
+        background: radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(59,130,246,0.5) 60%, rgba(59,130,246,0.4) 100%);
+        box-shadow: 0 0 120px 60px rgba(255,255,255,0.3), 0 0 240px 120px rgba(255,255,255,0.15);
+      "
+    >
+    </div>
+
+    <!-- Contenuto dentro la sfera -->
+    <div
+      data-sphere-inner
+      class="absolute z-20 flex flex-col items-center gap-4 text-center px-4"
+    >
+      <span
+        class="text-sm sm:text-base border border-white/40 w-fit px-3 py-1 rounded-full text-white"
+      >
+        OUR MISSION
+      </span>
+      <h2
+        class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white"
+      >
+        Guidare la crescita <br /> delle aziende con <br /> innovazione, creatività
+        <br /> e tecnologia
+      </h2>
+    </div>
+
+    <!-- Titolo finale + CTA (parte 3, specchiata) -->
+    <div
+      data-sphere-cta
+      class="absolute z-10 flex flex-col items-center gap-6 text-center px-4"
+    >
+      <p class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight">
+        Ready to shake things up?
+      </p>
+      <a
+        href="#"
+        class="inline-block px-8 py-2 bg-black text-white rounded-full text-lg font-medium hover:bg-gray-800 transition-colors"
+      >
+        CONTACT US
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupSphere } from "./sphere.motion";
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      setupSphere();
+    });
+  });
+</script>

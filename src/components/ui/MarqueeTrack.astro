@@ -1,0 +1,58 @@
+---
+interface Props {
+  duration?: string;
+  gap?: string;
+  reverse?: boolean;
+  class?: string;
+}
+
+const {
+  duration = "40s",
+  gap = "1rem",
+  reverse = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class="marquee-wrap">
+  <div
+    class:list={["marquee-track", { "marquee-reverse": reverse }, className]}
+    style={`--marquee-duration: ${duration}; --marquee-gap: ${gap};`}
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--marquee-gap);
+    width: max-content;
+    will-change: transform;
+    animation: marquee var(--marquee-duration) linear infinite;
+  }
+
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,181 @@
+<header
+  id="main-header"
+  class="fixed z-50 top-0 left-8 right-8 h-20 flex justify-between items-center px-8 py-4 pointer-events-none"
+>
+  <span
+    class="text-2xl font-bold bg-white pointer-events-auto px-3 py-1 rounded-full"
+    >Smoothie</span
+  >
+
+  <!-- Desktop nav -->
+  <nav class="hidden lg:block bg-white pointer-events-auto rounded-full">
+    <ul class="flex space-x-4 rounded-full">
+      <li>
+        <a
+          href="/"
+          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="/about"
+          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          href="/contact"
+          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+          >Contact</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button
+    data-menu-toggle
+    aria-label="Apri menu"
+    aria-expanded="false"
+    class="lg:hidden pointer-events-auto bg-white rounded-full p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 cursor-pointer"
+  >
+    <span class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center" data-line-top></span>
+    <span class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center" data-line-bottom></span>
+  </button>
+</header>
+
+<!-- Mobile menu sheet -->
+<div data-mobile-menu class="mobile-menu lg:hidden">
+  <!-- Backdrop -->
+  <div data-menu-backdrop class="mobile-menu-backdrop"></div>
+
+  <!-- Sheet -->
+  <nav data-menu-sheet class="mobile-menu-sheet">
+    <div class="flex justify-end p-6">
+      <button
+        data-menu-close
+        aria-label="Chiudi menu"
+        class="bg-gray-100 rounded-full p-2 flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
+      >
+        <span class="block w-5 h-0.5 bg-black rounded-full rotate-45 translate-y-px"></span>
+        <span class="block w-5 h-0.5 bg-black rounded-full -rotate-45 -translate-y-px"></span>
+      </button>
+    </div>
+
+    <ul class="flex flex-col gap-2 px-8 pt-4">
+      <li>
+        <a href="/" data-menu-link class="mobile-menu-link">Home</a>
+      </li>
+      <li>
+        <a href="/about" data-menu-link class="mobile-menu-link">About</a>
+      </li>
+      <li>
+        <a href="/contact" data-menu-link class="mobile-menu-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .mobile-menu[data-open] {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 300ms ease-out;
+  }
+
+  .mobile-menu[data-open] .mobile-menu-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .mobile-menu-sheet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: white;
+    border-radius: 1rem 0 0 1rem;
+    transform: translateX(100%);
+    transition: transform 300ms ease-out;
+  }
+
+  .mobile-menu[data-open] .mobile-menu-sheet {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+    letter-spacing: -0.025em;
+    transition: color 150ms;
+  }
+
+  .mobile-menu-link:hover {
+    color: #6b7280;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu-backdrop,
+    .mobile-menu-sheet {
+      transition-duration: 0ms;
+    }
+  }
+
+  /* Hamburger → X animation when open */
+  [data-menu-toggle][aria-expanded="true"] [data-line-top] {
+    transform: rotate(45deg) translateY(2px);
+  }
+
+  [data-menu-toggle][aria-expanded="true"] [data-line-bottom] {
+    transform: rotate(-45deg) translateY(-2px);
+  }
+</style>
+
+<script>
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const toggle = document.querySelector<HTMLElement>("[data-menu-toggle]");
+  const backdrop = document.querySelector<HTMLElement>("[data-menu-backdrop]");
+  const close = document.querySelector<HTMLElement>("[data-menu-close]");
+  const links = document.querySelectorAll<HTMLElement>("[data-menu-link]");
+
+  function open(): void {
+    if (!menu || !toggle) return;
+    menu.setAttribute("data-open", "");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function shut(): void {
+    if (!menu || !toggle) return;
+    menu.removeAttribute("data-open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  toggle?.addEventListener("click", () => {
+    menu?.hasAttribute("data-open") ? shut() : open();
+  });
+  backdrop?.addEventListener("click", shut);
+  close?.addEventListener("click", shut);
+  links.forEach((link) => link.addEventListener("click", shut));
+</script>

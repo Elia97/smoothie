@@ -1,23 +1,35 @@
 // ============================================================
 // Motion Init — Entry point unico per il motion system
-// Importato una sola volta nel Layout.astro
+// Importato una sola volta nel MarketingLayout.astro
 // ============================================================
 
 import { initPageMotion } from './orchestrators/page-orchestrator';
-import { initLenis, destroyLenis } from './engine/lenis-smooth';
 
 let ctx: gsap.Context | null = null;
+let lenisCleanup: (() => void) | null = null;
 
-function boot(): void {
+const DESKTOP_MQ = '(min-width: 768px)';
+
+async function boot(): Promise<void> {
   // Cleanup precedente (supporto Astro View Transitions)
   if (ctx) {
     ctx.revert();
     ctx = null;
   }
-  destroyLenis();
+  if (lenisCleanup) {
+    lenisCleanup();
+    lenisCleanup = null;
+  }
 
   ctx = initPageMotion();
-  initLenis();
+
+  // Lenis: dynamic import, desktop-only, non critico per first paint
+  if (window.matchMedia(DESKTOP_MQ).matches) {
+    const { initLenis, destroyLenis } = await import('./engine/lenis-smooth');
+    destroyLenis();
+    initLenis();
+    lenisCleanup = destroyLenis;
+  }
 }
 
 // Defer boot dopo il first paint del browser.
