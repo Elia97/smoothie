@@ -1,6 +1,7 @@
 <header
   id="main-header"
-  class="fixed z-50 top-0 left-8 right-8 h-20 flex justify-between items-center px-8 py-4 pointer-events-none"
+  data-hero-header
+  class="fixed z-50 top-0 left-2 right-2 sm:left-8 sm:right-8 h-20 flex justify-between items-center px-6 py-3 pointer-events-none"
 >
   <span
     class="text-2xl font-bold bg-white pointer-events-auto px-3 py-1 rounded-full"
@@ -19,9 +20,16 @@
       </li>
       <li>
         <a
-          href="/about"
+          href="/manifesto"
           class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
-          >About</a
+          >Manifesto</a
+        >
+      </li>
+      <li>
+        <a
+          href="/portfolio"
+          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
+          >Portfolio</a
         >
       </li>
       <li>
@@ -41,115 +49,134 @@
     aria-expanded="false"
     class="lg:hidden pointer-events-auto bg-white rounded-full p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 cursor-pointer"
   >
-    <span class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center" data-line-top></span>
-    <span class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center" data-line-bottom></span>
+    <span
+      class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center aria-expanded:rotate-45 aria-expanded:translate-y-0.5"
+      data-line-top></span>
+    <span
+      class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center aria-expanded:-rotate-45 aria-expanded:-translate-y-0.5"
+      data-line-bottom></span>
   </button>
 </header>
 
 <!-- Mobile menu sheet -->
-<div data-mobile-menu class="mobile-menu lg:hidden">
+<div
+  data-mobile-menu
+  class="group fixed inset-0 z-50 pointer-events-none invisible data-open:pointer-events-auto data-open:visible lg:hidden"
+>
   <!-- Backdrop -->
-  <div data-menu-backdrop class="mobile-menu-backdrop"></div>
+  <div
+    data-menu-backdrop
+    class="absolute inset-0 bg-black/0 transition-colors duration-300 ease-out group-data-open:bg-black/50 motion-reduce:transition-none"
+  >
+  </div>
 
   <!-- Sheet -->
-  <nav data-menu-sheet class="mobile-menu-sheet">
-    <div class="flex justify-end p-6">
+  <nav
+    data-menu-sheet
+    class="absolute top-0 right-0 bottom-0 w-4/5 max-w-80
+         bg-white rounded-l-2xl
+         translate-x-full transition-transform duration-300 ease-out
+         group-data-open:translate-x-0 motion-reduce:transition-none
+         flex flex-col h-full"
+  >
+    <!-- Header -->
+    <div class="flex justify-end p-2">
       <button
         data-menu-close
         aria-label="Chiudi menu"
         class="bg-gray-100 rounded-full p-2 flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
       >
-        <span class="block w-5 h-0.5 bg-black rounded-full rotate-45 translate-y-px"></span>
-        <span class="block w-5 h-0.5 bg-black rounded-full -rotate-45 -translate-y-px"></span>
+        <span
+          class="block w-5 h-0.5 bg-black rounded-full rotate-45 translate-y-px"
+        ></span>
+        <span
+          class="block w-5 h-0.5 bg-black rounded-full -rotate-45 -translate-y-px"
+        ></span>
       </button>
     </div>
 
-    <ul class="flex flex-col gap-2 px-8 pt-4">
+    <!-- Navigation -->
+    <ul class="flex flex-col px-8 pt-4">
       <li>
-        <a href="/" data-menu-link class="mobile-menu-link">Home</a>
+        <a
+          href="/"
+          data-menu-link
+          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+        >
+          Home
+        </a>
       </li>
       <li>
-        <a href="/about" data-menu-link class="mobile-menu-link">About</a>
+        <a
+          href="/manifesto"
+          data-menu-link
+          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+        >
+          Manifesto
+        </a>
       </li>
       <li>
-        <a href="/contact" data-menu-link class="mobile-menu-link">Contact</a>
+        <a
+          href="/portfolio"
+          data-menu-link
+          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+        >
+          Portfolio
+        </a>
+      </li>
+      <li>
+        <a
+          href="/contact"
+          data-menu-link
+          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+        >
+          Contact
+        </a>
       </li>
     </ul>
+
+    <!-- Social (Footer) -->
+    <div class="mt-auto px-8 pb-4">
+      <p
+        class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3"
+      >
+        Follow us
+      </p>
+      <ul class="flex flex-col gap-1">
+        <li>
+          <a
+            href="https://www.instagram.com/smoothie.agency"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+          >
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.facebook.com/smoothie.agency"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+          >
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/company/smoothie-agency"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+          >
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </div>
-
-<style>
-  .mobile-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    pointer-events: none;
-    visibility: hidden;
-  }
-
-  .mobile-menu[data-open] {
-    pointer-events: auto;
-    visibility: visible;
-  }
-
-  .mobile-menu-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0);
-    transition: background 300ms ease-out;
-  }
-
-  .mobile-menu[data-open] .mobile-menu-backdrop {
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  .mobile-menu-sheet {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    max-width: 320px;
-    background: white;
-    border-radius: 1rem 0 0 1rem;
-    transform: translateX(100%);
-    transition: transform 300ms ease-out;
-  }
-
-  .mobile-menu[data-open] .mobile-menu-sheet {
-    transform: translateX(0);
-  }
-
-  .mobile-menu-link {
-    display: block;
-    padding: 0.75rem 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: black;
-    letter-spacing: -0.025em;
-    transition: color 150ms;
-  }
-
-  .mobile-menu-link:hover {
-    color: #6b7280;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mobile-menu-backdrop,
-    .mobile-menu-sheet {
-      transition-duration: 0ms;
-    }
-  }
-
-  /* Hamburger → X animation when open */
-  [data-menu-toggle][aria-expanded="true"] [data-line-top] {
-    transform: rotate(45deg) translateY(2px);
-  }
-
-  [data-menu-toggle][aria-expanded="true"] [data-line-bottom] {
-    transform: rotate(-45deg) translateY(-2px);
-  }
-</style>
 
 <script>
   const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
