@@ -7,6 +7,17 @@ import {
 import { createScrollAnimation } from "../../motion/engine/scroll-engine";
 import { DURATION, EASE } from "../../motion/presets";
 
+// ─── Costanti configurabili ────────────────────────────────────────────────────
+
+/** Quanta sfera è visibile all'ingresso/uscita, espressa come frazione di vh.
+ *  0.5 = metà viewport → bordo opaco della sfera ben visibile. */
+const ORB_PEEK_VH = 0.5;
+
+/** Gradi di rotazione per ogni titolo che appare nella fase 1. */
+const ROTATION_PER_TITLE = 120;
+
+// ─── Setup principale ─────────────────────────────────────────────────────────
+
 export function setupSphere(): void {
   initGSAP();
 
@@ -14,39 +25,29 @@ export function setupSphere(): void {
   if (!section) return;
 
   const reduced = prefersReducedMotion();
-  const titlesWrap = section.querySelector<HTMLElement>(
-    "[data-sphere-titles]",
-  );
+  const titlesWrap = section.querySelector<HTMLElement>("[data-sphere-titles]");
   const badge = section.querySelector<HTMLElement>("[data-sphere-badge]");
   const titles = section.querySelectorAll<HTMLElement>("[data-sphere-keyword]");
   const orb = section.querySelector<HTMLElement>("[data-sphere-orb]");
   const inner = section.querySelector<HTMLElement>("[data-sphere-inner]");
   const cta = section.querySelector<HTMLElement>("[data-sphere-cta]");
 
-  if (!titlesWrap || !badge || !titles.length || !orb || !inner || !cta)
-    return;
+  if (!titlesWrap || !badge || !titles.length || !orb || !inner || !cta) return;
 
   createContext(section, () => {
     const dur = reduced ? 0.15 : DURATION.normal;
     const ease = reduced ? EASE.linear : EASE.smooth;
 
-    // Calcolo posizioni sfera basate sul viewport
+    // Posizioni verticali della sfera.
+    // orbStartY: sfera bassa, solo ORB_PEEK_VH del viewport è visible dal basso.
+    // orbEndY:   speculare — uscita verso l'alto con la stessa quantità visibile.
     const vh = window.innerHeight;
-    const orbSize = orb.offsetHeight; // 250vw in px
-    const orbRadius = orbSize / 2;
+    const orbRadius = orb.offsetHeight / 2;
+    const orbStartY = vh / 2 + orbRadius - vh * ORB_PEEK_VH;
+    const orbEndY = -orbStartY;
 
-    // Posizione iniziale: solo il polo della sfera visibile in fondo allo schermo
-    const peekAmount = orbSize * 0.03;
-    const orbStartY = vh / 2 + orbRadius - peekAmount;
-
-    // Posizione centrale: sfera centrata nel viewport
-    const orbCenterY = 0;
-
-    // Posizione finale (specchiata): fondo della sfera visibile in cima allo schermo
-    const orbEndY = -(vh / 2 + orbRadius - peekAmount);
-
-    // Stato iniziale
-    gsap.set(badge, { autoAlpha: 1 }); // badge sempre visibile
+    // ── Stato iniziale ──────────────────────────────────────────────────────────
+    gsap.set(badge, { autoAlpha: 1 });
     gsap.set(titles, { autoAlpha: 0, y: 40 });
     gsap.set(orb, { y: orbStartY, rotation: 0 });
     gsap.set(inner, { autoAlpha: 0, y: 30 });
@@ -54,117 +55,52 @@ export function setupSphere(): void {
 
     const tl = gsap.timeline();
 
-    // ═══════════════════════════════════════════
-    // PARTE 1: Badge + titoli + cima sfera in basso
-    // ═══════════════════════════════════════════
-
+    // ── Fase 1: titoli in entrata — sfera ferma, ruota ROTATION_PER_TITLE per titolo ─
     const titleStagger = dur * 2;
+    const titlePhaseDur = (titles.length - 1) * titleStagger + dur;
+
     titles.forEach((title, i) => {
+      const offset = i * titleStagger;
       tl.to(
         title,
+        { autoAlpha: 1, y: 0, duration: dur, ease: EASE.snap },
+        offset,
+      );
+      tl.to(
+        orb,
         {
-          autoAlpha: 1,
-          y: 0,
+          rotation: (i + 1) * ROTATION_PER_TITLE,
           duration: dur,
-          ease: EASE.snap,
+          ease: EASE.smooth,
         },
-        i * titleStagger,
+        offset,
       );
     });
 
-    // Sfera ruota leggermente mentre i titoli appaiono
-    const titlePhaseDur = (titles.length - 1) * titleStagger + dur;
-    tl.to(
-      orb,
-      {
-        rotation: 45,
-        duration: titlePhaseDur,
-        ease: EASE.linear,
-      },
-      0,
-    );
+    // Titoli svaniscono dopo l'ultimo
+    const fadeOutAt = titlePhaseDur + dur * 0.5;
+    tl.to(titlesWrap, { autoAlpha: 0, y: -40, duration: dur, ease }, fadeOutAt);
 
-    // Titoli e badge svaniscono
-    const fadeOutStart = titlePhaseDur + dur * 0.5;
-    tl.to(
-      titlesWrap,
-      {
-        autoAlpha: 0,
-        y: -40,
-        duration: dur,
-        ease,
-      },
-      fadeOutStart,
-    );
-
-    // ═══════════════════════════════════════════
-    // PARTE 2: Sfera sale al centro, contenuto interno
-    // ═══════════════════════════════════════════
-
-    const riseSart = fadeOutStart;
-    tl.to(
-      orb,
-      {
-        y: orbCenterY,
-        rotation: 180,
-        duration: dur * 4,
-        ease: EASE.inOut,
-      },
-      riseSart,
-    );
-
-    // Contenuto interno appare quando la sfera è centrata
-    const innerStart = riseSart + dur * 3;
-    tl.to(
-      inner,
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: dur,
-        ease,
-      },
-      innerStart,
-    );
-
-    // Contenuto interno svanisce
-    const innerEnd = innerStart + dur * 2.5;
-    tl.to(
-      inner,
-      {
-        autoAlpha: 0,
-        y: -30,
-        duration: dur,
-        ease,
-      },
-      innerEnd,
-    );
-
-    // ═══════════════════════════════════════════
-    // PARTE 3: Sfera esce verso l'alto, CTA
-    // ═══════════════════════════════════════════
+    // ── Fase 2: sfera sale al centro — contenuto interno entra ed esce ──────────
+    const riseAt = fadeOutAt + dur * 0.5;
+    const innerAt = riseAt + dur * 3; // inner appare quando la sfera è quasi centrata
+    const innerOut = innerAt + dur * 2.5; // inner esce
 
     tl.to(
       orb,
-      {
-        y: orbEndY,
-        rotation: 360,
-        duration: dur * 4,
-        ease: EASE.inOut,
-      },
-      innerEnd,
+      { y: 0, rotation: 540, duration: dur * 4, ease: EASE.inOut },
+      riseAt,
     );
+    tl.to(inner, { autoAlpha: 1, y: 0, duration: dur, ease }, innerAt);
+    tl.to(inner, { autoAlpha: 0, y: -30, duration: dur, ease }, innerOut);
 
-    // CTA appare quando la sfera raggiunge la posizione finale
+    // ── Fase 3: sfera esce verso l'alto — CTA appare ────────────────────────────
     tl.to(
-      cta,
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: dur,
-        ease,
-      },
-      innerEnd + dur * 4 - dur,
+      orb,
+      { y: orbEndY, rotation: 660, duration: dur * 4, ease: EASE.inOut },
+      innerOut,
     );
+    tl.to(cta, { autoAlpha: 1, y: 0, duration: dur, ease }, innerOut + dur * 3);
 
     createScrollAnimation({
       trigger: section,

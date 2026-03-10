@@ -1,11 +1,22 @@
 ---
-
+import sferaImage from "../../assets/sfera.webp";
 ---
 
-<section id="sphere-section" class="relative h-[600vh]">
-  <div
-    class="sticky top-0 h-screen flex items-center justify-center overflow-hidden"
-  >
+<section
+  id="sphere-section"
+  class="relative h-[600vh]"
+  style="overflow-x: clip;"
+>
+  <div class="sticky top-0 h-screen flex items-center justify-center">
+    <!-- Sfera -->
+    <img
+      data-sphere-orb
+      src={sferaImage.src}
+      alt="Sfera"
+      class="absolute max-w-none w-[140vw] h-[140vw]"
+      style="left: calc(50% - 70vw); top: calc(50% - 70vw);"
+    />
+
     <!-- Fase 1: Badge + 4 titoli -->
     <div
       data-sphere-titles
@@ -41,19 +52,6 @@
       >
         PERFORMANCE
       </span>
-    </div>
-
-    <!-- Sfera -->
-    <div
-      data-sphere-orb
-      class="absolute rounded-full pointer-events-none"
-      style="
-        width: 120vw;
-        height: 120vw;
-        background: radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(59,130,246,0.5) 60%, rgba(59,130,246,0.4) 100%);
-        box-shadow: 0 0 120px 60px rgba(255,255,255,0.3), 0 0 240px 120px rgba(255,255,255,0.15);
-      "
-    >
     </div>
 
     <!-- Contenuto dentro la sfera -->
@@ -94,10 +92,5 @@
 
 <script>
   import { setupSphere } from "./sphere.motion";
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      setupSphere();
-    });
-  });
+  setupSphere();
 </script>
