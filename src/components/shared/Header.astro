@@ -1,3 +1,12 @@
+---
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Manifesto", href: "/manifesto" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Contact", href: "/contact" },
+];
+---
+
 <header
   id="main-header"
   data-hero-header
@@ -10,35 +19,19 @@
 
   <!-- Desktop nav -->
   <nav class="hidden lg:block bg-white pointer-events-auto rounded-full">
-    <ul class="flex space-x-4 rounded-full">
-      <li>
-        <a
-          href="/"
-          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a
-          href="/manifesto"
-          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
-          >Manifesto</a
-        >
-      </li>
-      <li>
-        <a
-          href="/portfolio"
-          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
-          >Portfolio</a
-        >
-      </li>
-      <li>
-        <a
-          href="/contact"
-          class="text-gray-700 hover:text-gray-900 inline-block px-4 py-2"
-          >Contact</a
-        >
-      </li>
+    <ul class="flex rounded-full">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block p-4 text-sm font-semibold text-black leading-none tracking-wider transition-colors duration-150 hover:text-gray-500 rounded-full"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 

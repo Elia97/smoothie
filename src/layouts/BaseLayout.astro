@@ -20,6 +20,7 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="https://use.typekit.net/unv8try.css" />
     <title>{title}</title>
     <style>
       /* Anti-FOUC: elementi motion nascosti fino a init GSAP.
@@ -42,11 +43,21 @@ const {
   </head>
   <body>
     <!-- Loader: visibile subito, rimosso da JS prima dell'intro -->
-    <div id="page-loader" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#fff;">
-      <div style="width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#000;border-radius:50%;animation:loader-spin .7s linear infinite;"></div>
+    <div
+      id="page-loader"
+      style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#fff;"
+    >
+      <div
+        style="width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#000;border-radius:50%;animation:loader-spin .7s linear infinite;"
+      >
+      </div>
     </div>
     <style>
-      @keyframes loader-spin { to { transform: rotate(360deg); } }
+      @keyframes loader-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
     <slot />
   </body>

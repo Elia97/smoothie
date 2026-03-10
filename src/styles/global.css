@@ -1,2 +1,12 @@
 @import "lenis/dist/lenis.css";
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "area-normal", sans-serif;
+  --font-display: "swear-display", serif;
+  --font-cilati: "swear-display-cilati", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
