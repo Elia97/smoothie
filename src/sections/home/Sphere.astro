@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import sferaImage from "../../assets/sfera.webp";
 ---
 
@@ -9,10 +10,12 @@ import sferaImage from "../../assets/sfera.webp";
 >
   <div class="sticky top-0 h-screen flex items-center justify-center">
     <!-- Sfera -->
-    <img
+    <Image
       data-sphere-orb
-      src={sferaImage.src}
+      src={sferaImage}
       alt="Sfera"
+      width={1440}
+      loading="lazy"
       class="absolute max-w-none w-[140vw] h-[140vw]"
       style="left: calc(50% - 70vw); top: calc(50% - 70vw);"
     />

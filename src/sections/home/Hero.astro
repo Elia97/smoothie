@@ -1,17 +1,20 @@
 ---
+import { Image } from "astro:assets";
 import sferaImage from "../../assets/sfera.webp";
 ---
 
 <section
   data-motion-cursor-follow
-  class="relative min-h-screen flex flex-col items-center justify-center gap-6 px-4 [overflow-x:clip]"
+  class="relative min-h-screen flex flex-col items-center justify-center gap-6 px-4 overflow-x-clip"
 >
   <!-- Cursor-follow sphere -->
   <div data-hero-sphere-exit class="absolute size-200 pointer-events-none">
-    <img
+    <Image
       data-cursor-target
-      src={sferaImage.src}
+      src={sferaImage}
       alt="Sfera"
+      width={800}
+      loading="eager"
       class="w-full h-full rounded-full"
     />
   </div>

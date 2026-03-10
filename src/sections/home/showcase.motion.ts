@@ -18,16 +18,10 @@ export function setupShowcase(): void {
   if (!isMd) return;
 
   const reduced = prefersReducedMotion();
-  const images = section.querySelectorAll<HTMLElement>(
-    "[data-showcase-image]",
-  );
+  const images = section.querySelectorAll<HTMLElement>("[data-showcase-image]");
   const slider = section.querySelector<HTMLElement>("[data-showcase-slider]");
-  const content = section.querySelector<HTMLElement>(
-    "[data-showcase-content]",
-  );
-  const finalText = section.querySelector<HTMLElement>(
-    "[data-showcase-final]",
-  );
+  const content = section.querySelector<HTMLElement>("[data-showcase-content]");
+  const finalText = section.querySelector<HTMLElement>("[data-showcase-final]");
 
   createContext(section, () => {
     const dur = reduced ? 0.15 : DURATION.normal;

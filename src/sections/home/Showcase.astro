@@ -1,5 +1,13 @@
 ---
+import { Image } from "astro:assets";
 
+import imgScatter1 from "../../assets/DSC06957_q80.webp";
+import imgScatter2 from "../../assets/marepineta_q80.webp";
+import imgScatter3 from "../../assets/BRUT PRESTIGE_q80.webp";
+import imgScatter4 from "../../assets/58-1_q80.webp";
+import imgScatter5 from "../../assets/4_q80.webp";
+import imgScatter6 from "../../assets/JAPAN HOUSE_q80.webp";
+import sliderVideo from "../../assets/01_9_16.mp4";
 ---
 
 <section id="showcase" class="relative min-h-screen md:h-[300vh]">
@@ -7,13 +15,8 @@
   <!-- MOBILE: layout statico con animazioni dichiarative -->
   <!-- ═══════════════════════════════════════════ -->
   <div
-    class="md:hidden flex flex-col items-center justify-center min-h-screen gap-8 px-4"
+    class="md:hidden flex flex-col sm:flex-row items-center justify-center min-h-screen gap-8 px-4 my-12"
   >
-    <div
-      data-motion="scale-in"
-      class="w-full max-w-sm aspect-video rounded-2xl bg-rose-400/60"
-    >
-    </div>
     <div class="text-center">
       <h2
         data-motion="fade-in"
@@ -30,6 +33,18 @@
         EXPLORE MORE
       </a>
     </div>
+    <div
+      data-motion="scale-in"
+      class="w-full max-w-60 aspect-9/16 rounded-2xl overflow-hidden"
+    >
+      <video
+        src={sliderVideo}
+        autoplay
+        muted
+        loop
+        playsinline
+        class="w-full h-full object-cover"></video>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════ -->
@@ -42,40 +57,83 @@
     <!-- Scatter images -->
     <div
       data-showcase-image
-      class="absolute bottom-[5%] left-[5%] w-60 lg:w-80 aspect-video rounded-2xl bg-violet-400/60"
+      class="absolute bottom-[5%] left-[5%] w-[25vw] aspect-video rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter1}
+        alt="Showcase 1"
+        width={640}
+        class="w-full h-full object-cover"
+      />
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[35%] left-[8%] w-40 lg:w-50 aspect-square rounded-2xl bg-blue-400/60"
+      class="absolute bottom-[45%] left-[10%] w-[15vw] aspect-square rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter2}
+        alt="Showcase 2"
+        width={400}
+        class="w-full h-full object-cover"
+      />
     </div>
     <div
       data-showcase-image
-      class="absolute top-[10%] left-[20%] lg:left-[30%] w-32 lg:w-40 aspect-square rounded-2xl bg-indigo-400/60"
+      class="absolute top-[5%] left-[30%] w-[10vw] aspect-square rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter3}
+        alt="Showcase 3"
+        width={320}
+        class="w-full h-full object-cover"
+      />
     </div>
     <div
       data-showcase-image
-      class="absolute top-[15%] right-[20%] lg:right-[30%] w-24 lg:w-32 aspect-square rounded-2xl bg-purple-400/60"
+      class="absolute top-[10%] right-[40%] w-[8vw] aspect-square rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter4}
+        alt="Showcase 4"
+        width={256}
+        class="w-full h-full object-cover"
+      />
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[20%] right-[15%] lg:right-[25%] w-40 lg:w-50 aspect-video rounded-2xl bg-sky-400/60"
+      class="absolute bottom-[20%] right-[25%] w-[15vw] aspect-video rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter5}
+        alt="Showcase 5"
+        width={400}
+        class="w-full h-full object-cover"
+      />
     </div>
     <div
       data-showcase-image
-      class="absolute bottom-[5%] right-[5%] w-40 lg:w-50 aspect-square rounded-2xl bg-cyan-400/60"
+      class="absolute bottom-[5%] right-[5%] w-[15vw] aspect-square rounded-2xl overflow-hidden"
     >
+      <Image
+        src={imgScatter6}
+        alt="Showcase 6"
+        width={400}
+        class="w-full h-full object-cover"
+      />
     </div>
 
-    <!-- Sliding image (fase 1: top-right, fase 2: nella grid) -->
+    <!-- Sliding video (fase 1: top-right, fase 2: nella grid) -->
     <div
       data-showcase-slider
-      class="absolute top-[10%] right-[5%] w-36 lg:w-44 aspect-9/16 rounded-2xl bg-rose-400/60"
+      class="absolute top-[10%] right-[5%] w-[20vw] lg:w-[12vw] aspect-9/16 rounded-2xl overflow-hidden"
     >
+      <video
+        src={sliderVideo}
+        autoplay
+        muted
+        loop
+        playsinline
+        class="w-full h-full object-cover"></video>
     </div>
 
     <!-- Title + CTA (fase 1) -->
