@@ -39,6 +39,11 @@ export function setupHero(): void {
 
   if (!section || !title || !sphere) return;
 
+  const sphereExit = section.querySelector<HTMLElement>(
+    "[data-hero-sphere-exit]",
+  );
+  if (!sphereExit) return;
+
   // --- Prepare title: split text segments into chars, collect animation order ---
   const typeTexts = title.querySelectorAll<HTMLElement>("[data-type-text]");
   const typeWords = title.querySelectorAll<HTMLElement>("[data-type-word]");
@@ -119,9 +124,16 @@ export function setupHero(): void {
     );
   }
 
-  // --- Scroll-driven: sphere fades out as section exits ---
+  // --- Scroll-driven: sphere floats up and fades as section exits ---
+  // Target: wrapper div (y/scale/autoAlpha) — img keeps cursor-follow y separate, no conflict
   const scrollTl = gsap.timeline();
-  scrollTl.to(sphere, { autoAlpha: 0, duration: 1 });
+  scrollTl.to(sphereExit, {
+    autoAlpha: 0,
+    y: -80,
+    scale: 1.15,
+    duration: 1,
+    ease: "none",
+  });
 
   createScrollAnimation({
     trigger: section,

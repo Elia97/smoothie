@@ -4,15 +4,17 @@ import sferaImage from "../../assets/sfera.webp";
 
 <section
   data-motion-cursor-follow
-  class="relative min-h-screen flex flex-col items-center justify-center gap-6 px-4 overflow-hidden"
+  class="relative min-h-screen flex flex-col items-center justify-center gap-6 px-4 [overflow-x:clip]"
 >
   <!-- Cursor-follow sphere -->
-  <img
-    data-cursor-target
-    src={sferaImage.src}
-    alt="Sfera"
-    class="absolute size-200 rounded-full pointer-events-none"
-  />
+  <div data-hero-sphere-exit class="absolute size-200 pointer-events-none">
+    <img
+      data-cursor-target
+      src={sferaImage.src}
+      alt="Sfera"
+      class="w-full h-full rounded-full"
+    />
+  </div>
 
   <h1
     data-hero-title
