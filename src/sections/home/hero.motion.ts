@@ -1,6 +1,6 @@
 import { initGSAP, gsap } from "../../motion/engine/gsap-core";
 import { createScrollAnimation } from "../../motion/engine/scroll-engine";
-import { DURATION, EASE, STAGGER } from "../../motion/presets";
+import { DURATION, EASE } from "../../motion/presets";
 
 /**
  * Split text content of an element into individual <span> per character.
