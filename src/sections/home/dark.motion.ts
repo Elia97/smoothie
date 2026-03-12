@@ -14,6 +14,8 @@ export function setupDark(): void {
   if (!section) return;
 
   const reduced = prefersReducedMotion();
+  if (reduced) return;
+
   const bg = section.querySelector<HTMLElement>("[data-dark-bg]");
   const text = section.querySelector<HTMLElement>("[data-dark-text]");
   if (!bg || !text) return;

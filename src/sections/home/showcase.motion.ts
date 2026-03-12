@@ -18,6 +18,14 @@ export function setupShowcase(): void {
   if (!isMd) return;
 
   const reduced = prefersReducedMotion();
+
+  // Reduced-motion: collassa l'altezza extra (no scroll runway)
+  if (reduced) {
+    section.style.height = 'auto';
+    const desktop = section.querySelector<HTMLElement>('[data-showcase-desktop]');
+    if (desktop) desktop.style.position = 'relative';
+  }
+
   const images = section.querySelectorAll<HTMLElement>("[data-showcase-image]");
   const slider = section.querySelector<HTMLElement>("[data-showcase-slider]");
   const content = section.querySelector<HTMLElement>("[data-showcase-content]");
@@ -61,6 +69,8 @@ export function setupShowcase(): void {
         autoAlpha: 0,
         duration: dur,
         ease: reduced ? EASE.linear : EASE.smooth,
+        onComplete: () => content?.setAttribute("aria-hidden", "true"),
+        onReverseComplete: () => content?.setAttribute("aria-hidden", "false"),
       },
       phase1End,
     );
@@ -99,6 +109,8 @@ export function setupShowcase(): void {
           autoAlpha: 1,
           duration: dur,
           ease: reduced ? EASE.linear : EASE.smooth,
+          onComplete: () => finalText.setAttribute("aria-hidden", "false"),
+          onReverseComplete: () => finalText.setAttribute("aria-hidden", "true"),
         },
         `>${-dur * 0.5}`,
       );
@@ -107,7 +119,7 @@ export function setupShowcase(): void {
     createScrollAnimation({
       trigger: section,
       animation: tl,
-      start: "top top",
+      start: reduced ? "top 10%" : "top top",
       end: "bottom bottom",
       scrub: reduced ? false : 1,
       pin: false,

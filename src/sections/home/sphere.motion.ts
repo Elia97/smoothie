@@ -25,6 +25,15 @@ export function setupSphere(): void {
   if (!section) return;
 
   const reduced = prefersReducedMotion();
+
+  // Reduced-motion: collassa l'altezza extra (no scroll runway)
+  if (reduced) {
+    section.style.height = 'auto';
+    section.style.minHeight = '100vh';
+    const stickyWrap = section.firstElementChild as HTMLElement;
+    if (stickyWrap) stickyWrap.style.position = 'relative';
+  }
+
   const titlesWrap = section.querySelector<HTMLElement>("[data-sphere-titles]");
   const badge = section.querySelector<HTMLElement>("[data-sphere-badge]");
   const titles = section.querySelectorAll<HTMLElement>("[data-sphere-keyword]");
@@ -105,7 +114,7 @@ export function setupSphere(): void {
     createScrollAnimation({
       trigger: section,
       animation: tl,
-      start: "top top",
+      start: reduced ? "top 10%" : "top top",
       end: "bottom bottom",
       scrub: reduced ? false : 1,
       pin: false,

@@ -3,10 +3,7 @@ import { Image } from "astro:assets";
 import sferaImage from "../../assets/sfera.webp";
 ---
 
-<section
-  id="sphere-section"
-  class="relative h-[600vh] overflow-x-clip"
->
+<section id="sphere-section" class="relative h-[600vh] overflow-x-clip">
   <div class="sticky top-0 h-screen flex items-center justify-center">
     <!-- Sfera -->
     <Image
@@ -58,6 +55,7 @@ import sferaImage from "../../assets/sfera.webp";
     >
       <span class="badge border-white"> Our mission </span>
       <h2
+        aria-label="Guidare la crescita delle aziende con innovazione, creatività e tecnologia"
         class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-8"
       >
         Guidare la crescita <br /> delle aziende con <br /> innovazione, creatività
@@ -71,11 +69,12 @@ import sferaImage from "../../assets/sfera.webp";
       class="absolute z-10 flex flex-col items-center gap-6 text-center px-4"
     >
       <p
+        aria-label="Ready to shake things up?"
         class="text-3xl sm:text-5xl lg:text-6xl font-bold text-center leading-snug tracking-tight"
       >
         Ready to shake <br /> things up?
       </p>
-      <a href="#" class="btn-primary">Contact us</a>
+      <a href="/contact" class="btn-primary">Contact us</a>
     </div>
   </div>
 </section>
