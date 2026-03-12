@@ -15,20 +15,13 @@ import logo11 from "../../assets/loghi/Philipp_Plein_B_q80.webp";
 import logo12 from "../../assets/loghi/Roberto Cavalli_no eyewear_q80.webp";
 ---
 
-<section
-  class="flex flex-col justify-center gap-12 md:gap-16 overflow-hidden px-4"
->
-  <div class="max-w-md mx-auto text-center">
-    <span
-      data-motion="fade-in"
-      class="text-sm sm:text-base text-center border w-fit mx-auto px-3 py-1 rounded-full mb-4 md:mb-6 block"
-    >
-      OUR CLIENT
-    </span>
+<section class="flex flex-col justify-center gap-12 md:gap-16 overflow-hidden">
+  <div class="max-w-md mx-auto px-8">
+    <span data-motion="fade-in" class="badge">Our client</span>
     <p
       data-motion="fade-in"
       data-motion-delay="0.15"
-      class="text-center sm:text-lg max-w-sm mx-auto"
+      class="max-w-md sm:text-lg text-muted-foreground leading-relaxed mx-auto text-center"
     >
       I nostri clienti, straordinari artefici di storie di successo insieme a
       noi
@@ -39,36 +32,204 @@ import logo12 from "../../assets/loghi/Roberto Cavalli_no eyewear_q80.webp";
   <div class="flex flex-col gap-4">
     <!-- Riga 1: scorre a sinistra -->
     <MarqueeTrack duration="30s" gap="1.5rem">
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo1} alt="Thelios" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo2} alt="De Rigo" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo3} alt="Escada" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo4} alt="Fila Eyewear" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo5} alt="I AM Unico" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo6} alt="Just Cavalli" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo1}
+          alt="Thelios"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo2}
+          alt="De Rigo"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo3}
+          alt="Escada"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo4}
+          alt="Fila Eyewear"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo5}
+          alt="I AM Unico"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo6}
+          alt="Just Cavalli"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
       <!-- Duplicato per loop continuo -->
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo1} alt="Thelios" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo2} alt="De Rigo" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo3} alt="Escada" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo4} alt="Fila Eyewear" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo5} alt="I AM Unico" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo6} alt="Just Cavalli" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo1}
+          alt="Thelios"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo2}
+          alt="De Rigo"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo3}
+          alt="Escada"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo4}
+          alt="Fila Eyewear"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo5}
+          alt="I AM Unico"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo6}
+          alt="Just Cavalli"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
     </MarqueeTrack>
 
     <!-- Riga 2: scorre a destra -->
     <MarqueeTrack duration="30s" gap="1.5rem" reverse>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo7} alt="Casa Sanremo" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo8} alt="Caveja" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo9} alt="Italsoft" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo10} alt="Nero" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo11} alt="Philipp Plein" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo12} alt="Roberto Cavalli" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo7}
+          alt="Casa Sanremo"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo8}
+          alt="Caveja"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo9}
+          alt="Italsoft"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo10}
+          alt="Nero"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo11}
+          alt="Philipp Plein"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo12}
+          alt="Roberto Cavalli"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
       <!-- Duplicato per loop continuo -->
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo7} alt="Casa Sanremo" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo8} alt="Caveja" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo9} alt="Italsoft" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo10} alt="Nero" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo11} alt="Philipp Plein" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
-      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4"><Image src={logo12} alt="Roberto Cavalli" width={240} class="max-w-full max-h-full object-contain opacity-50" /></div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo7}
+          alt="Casa Sanremo"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo8}
+          alt="Caveja"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo9}
+          alt="Italsoft"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo10}
+          alt="Nero"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo11}
+          alt="Philipp Plein"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
+      <div class="shrink-0 flex items-center justify-center w-64 h-32 p-4">
+        <Image
+          src={logo12}
+          alt="Roberto Cavalli"
+          width={240}
+          class="max-w-full max-h-full object-contain opacity-50"
+        />
+      </div>
     </MarqueeTrack>
   </div>
 </section>

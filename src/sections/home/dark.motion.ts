@@ -16,15 +16,13 @@ export function setupDark(): void {
   const reduced = prefersReducedMotion();
   const bg = section.querySelector<HTMLElement>("[data-dark-bg]");
   const text = section.querySelector<HTMLElement>("[data-dark-text]");
-  const btn = section.querySelector<HTMLElement>("[data-dark-btn]");
-  if (!bg || !text || !btn) return;
+  if (!bg || !text) return;
 
   createContext(section, () => {
-    const dur = reduced ? 0.15 : DURATION.normal;
+    const dur = reduced ? 0.15 : DURATION.instant;
 
     // Testo sempre visibile — parte nero, diventa bianco
     gsap.set(text, { autoAlpha: 1 });
-    gsap.set(btn, { autoAlpha: 1 });
 
     const tl = gsap.timeline();
 
@@ -49,17 +47,6 @@ export function setupDark(): void {
       0,
     );
 
-    tl.to(
-      btn,
-      {
-        backgroundColor: "#ffffff",
-        color: "#000000",
-        duration: dur,
-        ease: EASE.smooth,
-      },
-      0,
-    );
-
     // Fase 2: tutto torna normale
     const holdEnd = tl.duration() + 0.5;
 
@@ -77,17 +64,6 @@ export function setupDark(): void {
       text,
       {
         color: "#000000",
-        duration: dur,
-        ease: EASE.smooth,
-      },
-      holdEnd,
-    );
-
-    tl.to(
-      btn,
-      {
-        backgroundColor: "#000000",
-        color: "#ffffff",
         duration: dur,
         ease: EASE.smooth,
       },

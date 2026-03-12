@@ -1,68 +1,69 @@
-<footer id="main-footer" class="sticky bottom-0 z-0 bg-black text-white">
-  <div class="container mx-auto px-4 py-8">
+<footer
+  id="main-footer"
+  class="sticky bottom-0 z-0 bg-foreground text-background"
+>
+  <div class="p-8">
     <!-- Top: contenuto principale -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 mb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-8">
       <!-- Sinistra: titolo, newsletter, contatto -->
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-6">
         <div>
-          <h2
-            class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
+          <h3
+            class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-2"
           >
             Let's talk
-          </h2>
-          <p
-            class="text-gray-400 text-base md:text-lg max-w-md leading-relaxed"
-          >
+          </h3>
+          <p class="max-w-md sm:text-lg text-muted leading-relaxed">
             Let's make your brand unforgettable
           </p>
         </div>
         <div class="flex flex-col gap-6">
-          <form class="flex gap-2 max-w-md flex-wrap">
+          <form class="flex flex-col sm:flex-row gap-2 max-w-md text-nowrap">
             <input
               type="email"
-              placeholder="La tua email"
-              class="flex-1 px-2 py-1 bg-white/10 border border-white/20 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-white/40 transition-colors"
+              placeholder="Email..."
+              class="pl-4 pr-2 pt-2 pb-1 bg-input border rounded-full text-foreground placeholder-muted-foreground focus:outline-none focus:border-border/50 transition-colors"
             />
             <button
               type="submit"
-              class="px-4 py-2 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-colors cursor-pointer"
+              class="px-4 pt-2 pb-1 bg-input text-foreground rounded-full font-medium hover:bg-input/70 transition-colors cursor-pointer"
             >
-              ISCRIVITI
+              Subscribe to our newsletter
             </button>
           </form>
           <a
-            href="mailto:hello@smoothie.it"
-            class="text-gray-400 hover:text-white transition-colors"
+            href="mailto:contact@smoothiecommunicate.com"
+            class="text-muted hover:text-background transition-colors text-sm"
           >
-            hello@smoothie.it
+            contact@smoothiecommunicate.com
           </a>
         </div>
       </div>
 
       <!-- Destra: due colonne sedi -->
-      <div class="grid grid-cols-2 gap-8 lg:pt-2">
+      <div class="grid grid-cols-2 gap-4 lg:pt-2">
         <div>
           <h4
-            class="font-semibold text-sm uppercase tracking-wider mb-4 text-gray-400"
+            class="font-semibold text-sm uppercase tracking-wider mb-4 text-muted"
           >
-            Milano
+            Padova
           </h4>
-          <address class="not-italic text-sm leading-relaxed text-gray-300">
-            Via Monte Napoleone, 8<br />
-            20121 Milano MI<br />
-            Italia
+          <address class="not-italic text-xs leading-relaxed">
+            Largo Europa, 20<br />
+            35137 (PD)<br />
+            +93 0424066395
           </address>
         </div>
         <div>
           <h4
-            class="font-semibold text-sm uppercase tracking-wider mb-4 text-gray-400"
+            class="font-semibold text-sm uppercase tracking-wider mb-4 text-muted"
           >
-            Roma
+            Milano
           </h4>
-          <address class="not-italic text-sm leading-relaxed text-gray-300">
-            Via del Corso, 120<br />
-            00186 Roma RM<br />
-            Italia
+          <address class="not-italic text-xs leading-relaxed">
+            Largo Europa, 20<br />
+            35137 (PD)<br />
+            +93 0424066395
           </address>
         </div>
       </div>
@@ -70,22 +71,11 @@
 
     <!-- Bottom bar -->
     <div
-      class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+      class="border-t pt-4 flex flex-col md:flex-row justify-between items-center gap-4"
     >
-      <span class="text-sm text-gray-500">
+      <small class="text-muted">
         &copy; {new Date().getFullYear()} Smoothie. Tutti i diritti riservati.
-      </span>
-      <div class="flex gap-6 text-sm text-gray-500">
-        <a href="#" class="hover:text-white transition-colors"
-          >Privacy Policy</a
-        >
-        <a href="#" class="hover:text-white transition-colors"
-          >Cookie Policy</a
-        >
-        <a href="#" class="hover:text-white transition-colors"
-          >P.IVA 00000000000</a
-        >
-      </div>
+      </small>
     </div>
   </div>
 </footer>

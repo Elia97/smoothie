@@ -6,21 +6,21 @@ import image3 from "../../assets/5_q80.webp";
 ---
 
 <section
-  class="min-h-screen container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 px-4"
+  class="min-h-screen container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 px-8 overflow-x-clip"
 >
   <!-- Testo a sinistra -->
-  <div data-motion="fade-in" class="text-center md:text-left">
-    <h2 class="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight mb-6">
-      un'oasi di lusso<br /> sul mare di Milano <br /> Marittima
+  <div data-motion="fade-in">
+    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-8">
+      Un'oasi di lusso<br /> sul mare di Milano <br /> Marittima
     </h2>
     <p
-      class="text-base md:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0"
+      class="max-w-lg sm:text-lg text-muted-foreground leading-relaxed mx-auto md:mx-0"
     >
       Eleganza, esclusività e sapore mediterraneo. Il Beach Club di Marepinetta
       Resort è il luogo dove le giornate si trasformano in esperienze
       indimenticabili, tra momenti di relax, piatti d’autore e serate dal
       fascino unico, raccontate attraverso immagini, grafiche e motion design
-      pensati per dare vita alla stagione estiva
+      pensati per dare vita alla stagione estiva.
     </p>
   </div>
   <!-- Composizione immagini a destra -->
@@ -33,21 +33,36 @@ import image3 from "../../assets/5_q80.webp";
         data-motion-item
         class="w-full h-full rounded-lg shadow-lg overflow-hidden"
       >
-        <Image src={image2} alt="" width={720} class="w-full h-full object-cover" />
+        <Image
+          src={image2}
+          alt=""
+          width={720}
+          class="w-full h-full object-cover"
+        />
       </div>
       <!-- Immagine 1 — in basso a sinistra rispetto al centrale -->
       <div
         data-motion-item
         class="absolute -bottom-8 -left-16 w-1/3 aspect-9/16 rounded-lg shadow-lg overflow-hidden"
       >
-        <Image src={image1} alt="" width={240} class="w-full h-full object-cover" />
+        <Image
+          src={image1}
+          alt=""
+          width={240}
+          class="w-full h-full object-cover"
+        />
       </div>
       <!-- Immagine 3 — in alto a destra rispetto al centrale -->
       <div
         data-motion-item
         class="absolute top-1/2 -right-16 w-1/3 aspect-square rounded-lg shadow-lg overflow-hidden"
       >
-        <Image src={image3} alt="" width={240} class="w-full h-full object-cover" />
+        <Image
+          src={image3}
+          alt=""
+          width={240}
+          class="w-full h-full object-cover"
+        />
       </div>
     </div>
   </div>
