@@ -1,11 +1,12 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import image1 from "../../assets/DSC05865_q80.webp";
 import image2 from "../../assets/marepineta_q80.webp";
 import image3 from "../../assets/5_q80.webp";
 ---
 
 <section
+  id="split"
   class="min-h-screen container mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 md:gap-12 px-8 overflow-x-clip"
 >
   <!-- Testo a sinistra -->
@@ -35,7 +36,7 @@ import image3 from "../../assets/5_q80.webp";
       >
         <Image
           src={image2}
-          alt=""
+          alt="Marepineta Beach Club — vista esterna"
           width={720}
           class="w-full h-full object-cover"
         />
@@ -47,7 +48,7 @@ import image3 from "../../assets/5_q80.webp";
       >
         <Image
           src={image1}
-          alt=""
+          alt="Marepineta Beach Club — dettaglio"
           width={240}
           class="w-full h-full object-cover"
         />
@@ -59,7 +60,7 @@ import image3 from "../../assets/5_q80.webp";
       >
         <Image
           src={image3}
-          alt=""
+          alt="Marepineta Beach Club — interior"
           width={240}
           class="w-full h-full object-cover"
         />

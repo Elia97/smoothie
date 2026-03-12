@@ -1,4 +1,4 @@
-import { initGSAP, gsap } from "../../motion/engine/gsap-core";
+import { initGSAP, gsap, prefersReducedMotion } from "../../motion/engine/gsap-core";
 import { createScrollAnimation } from "../../motion/engine/scroll-engine";
 import { DURATION, EASE } from "../../motion/presets";
 
@@ -62,17 +62,29 @@ export function setupHero(): void {
   // Make title visible (chars/words are individually hidden)
   gsap.set(title, { autoAlpha: 1 });
 
+  const reduced = prefersReducedMotion();
+
   // --- Dismiss loader, then intro sequence ---
   const loader = document.getElementById("page-loader");
-  const intro = gsap.timeline({ delay: 0.3 });
+  const intro = gsap.timeline({ delay: reduced ? 0 : 0.3 });
 
   if (loader) {
     intro.to(loader, {
       autoAlpha: 0,
-      duration: 0.4,
+      duration: reduced ? 0.15 : 0.4,
       ease: EASE.smooth,
       onComplete: () => loader.remove(),
     });
+  }
+
+  if (reduced) {
+    // Reduced motion: show final state immediately, skip typewriter
+    allChars.forEach((ch) => (ch.style.visibility = "visible"));
+    gsap.set(typeWords, { autoAlpha: 1, scale: 1 });
+    gsap.set(sphere, { autoAlpha: 1, scale: 1 });
+    if (header) gsap.set(header, { autoAlpha: 1, y: 0 });
+    if (scrollHint) gsap.set(scrollHint, { autoAlpha: 1 });
+    return;
   }
 
   // --- Typewriter: DOM order, each word bounce-in at its natural position ---

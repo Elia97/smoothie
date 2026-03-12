@@ -20,6 +20,7 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="stylesheet" href="https://use.typekit.net/unv8try.css" />
     <title>{title}</title>
     <style>
@@ -59,6 +60,27 @@ const {
         }
       }
     </style>
+    <noscript>
+      <style>
+        [data-motion],
+        [data-motion-item],
+        [data-cursor-target],
+        [data-showcase-image],
+        [data-showcase-slider],
+        [data-showcase-final],
+        [data-sphere-keyword],
+        [data-sphere-inner],
+        [data-sphere-cta],
+        [data-hero-title],
+        [data-hero-header],
+        [data-hero-scroll-hint] {
+          visibility: visible !important;
+        }
+        #page-loader {
+          display: none !important;
+        }
+      </style>
+    </noscript>
     <slot />
   </body>
 </html>

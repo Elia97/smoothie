@@ -7,6 +7,13 @@ const navItems = [
 ];
 ---
 
+<a
+  href="#main-content"
+  class="fixed z-100 -top-full left-1/2 transform -translate-x-1/2 px-4 py-2 bg-background text-foreground rounded-full font-semibold focus:top-4 pointer-events-auto"
+>
+  Vai al contenuto principale
+</a>
+
 <header
   id="main-header"
   data-hero-header
@@ -90,48 +97,25 @@ const navItems = [
 
     <!-- Navigation -->
     <ul class="flex flex-col px-8 pt-4">
-      <li>
-        <a
-          href="/"
-          data-menu-link
-          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
-        >
-          Home
-        </a>
-      </li>
-      <li>
-        <a
-          href="/manifesto"
-          data-menu-link
-          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
-        >
-          Manifesto
-        </a>
-      </li>
-      <li>
-        <a
-          href="/portfolio"
-          data-menu-link
-          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
-        >
-          Portfolio
-        </a>
-      </li>
-      <li>
-        <a
-          href="/contact"
-          data-menu-link
-          class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
-        >
-          Contact
-        </a>
-      </li>
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              data-menu-link
+              class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Social (Footer) -->
     <div class="mt-auto px-8 pb-4">
       <p
-        class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3"
+        class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3"
       >
         Follow us
       </p>
@@ -183,6 +167,8 @@ const navItems = [
     menu.setAttribute("data-open", "");
     toggle.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
+    const firstLink = menu.querySelector<HTMLElement>("[data-menu-link]");
+    firstLink?.focus();
   }
 
   function shut(): void {
@@ -190,6 +176,7 @@ const navItems = [
     menu.removeAttribute("data-open");
     toggle.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
+    toggle.focus();
   }
 
   toggle?.addEventListener("click", () => {
@@ -198,4 +185,9 @@ const navItems = [
   backdrop?.addEventListener("click", shut);
   close?.addEventListener("click", shut);
   links.forEach((link) => link.addEventListener("click", shut));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu?.hasAttribute("data-open")) {
+      shut();
+    }
+  });
 </script>

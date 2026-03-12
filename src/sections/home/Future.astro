@@ -3,6 +3,7 @@ import videoSrc from "../../assets/Studio-Nobo.mp4";
 ---
 
 <section
+  id="future"
   class="min-h-screen flex flex-col justify-center gap-12 md:gap-16 overflow-hidden px-8 pt-24"
 >
   <h2
@@ -15,7 +16,7 @@ import videoSrc from "../../assets/Studio-Nobo.mp4";
     data-motion="scale-in"
     class="aspect-video w-full max-w-4xl mx-auto rounded-2xl overflow-hidden"
   >
-    <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+    <video class="w-full h-full object-cover" autoplay muted loop playsinline preload="none" aria-hidden="true">
       <source src={videoSrc} type="video/mp4" />
     </video>
   </div>

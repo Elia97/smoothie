@@ -18,10 +18,13 @@
           </p>
         </div>
         <div class="flex flex-col gap-6">
-          <form class="flex flex-col sm:flex-row gap-2 max-w-md text-nowrap">
+          <form class="flex flex-col sm:flex-row gap-2 max-w-md sm:text-nowrap">
+            <label for="newsletter-email" class="sr-only">Indirizzo email</label>
             <input
+              id="newsletter-email"
               type="email"
               placeholder="Email..."
+              required
               class="pl-4 pr-2 pt-2 pb-1 bg-input border rounded-full text-foreground placeholder-muted-foreground focus:outline-none focus:border-border/50 transition-colors"
             />
             <button

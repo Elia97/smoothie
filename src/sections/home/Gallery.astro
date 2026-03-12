@@ -1,6 +1,6 @@
 ---
 import MarqueeTrack from "../../components/ui/MarqueeTrack.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import image1 from "../../assets/1_q80.webp";
 import image2 from "../../assets/2_q80.webp";
 import image3 from "../../assets/3_q80.webp";
@@ -16,6 +16,7 @@ import image12 from "../../assets/12_q80.webp";
 ---
 
 <section
+  id="gallery"
   class="min-h-screen flex flex-col justify-center gap-12 md:gap-16 overflow-hidden"
 >
   <!-- Testo centrato, schiacciato in alto -->
@@ -42,7 +43,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image1}
-          alt=""
+          alt="Cantine Vedova — prodotto Prosecco 1"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -50,7 +51,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image2}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 2"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -58,7 +59,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image3}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 3"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -66,7 +67,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image4}
-          alt=""
+          alt="Cantine Vedova — vigneto Valdobbiadene 4"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -74,7 +75,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image5}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 5"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -82,7 +83,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image6}
-          alt=""
+          alt="Cantine Vedova — packaging 6"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -90,7 +91,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image7}
-          alt=""
+          alt="Cantine Vedova — prodotto Prosecco 7"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -98,7 +99,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image8}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 8"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -106,7 +107,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image9}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 9"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -114,7 +115,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image10}
-          alt=""
+          alt="Cantine Vedova — vigneto Valdobbiadene 10"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -122,7 +123,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image11}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 11"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -130,7 +131,7 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image12}
-          alt=""
+          alt="Cantine Vedova — packaging 12"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -139,7 +140,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image1}
-          alt=""
+          alt="Cantine Vedova — prodotto Prosecco 1"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -147,7 +149,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image2}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 2"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -155,7 +158,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image3}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 3"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -163,7 +167,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image4}
-          alt=""
+          alt="Cantine Vedova — vigneto Valdobbiadene 4"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -171,7 +176,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image5}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 5"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -179,7 +185,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image6}
-          alt=""
+          alt="Cantine Vedova — packaging 6"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -187,7 +194,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image7}
-          alt=""
+          alt="Cantine Vedova — prodotto Prosecco 7"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -195,7 +203,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image8}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 8"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -203,7 +212,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image9}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 9"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -211,7 +221,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image10}
-          alt=""
+          alt="Cantine Vedova — vigneto Valdobbiadene 10"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -219,7 +230,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-9/16 rounded-2xl overflow-hidden">
         <Image
           src={image11}
-          alt=""
+          alt="Cantine Vedova — dettaglio prodotto 11"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />
@@ -227,7 +239,8 @@ import image12 from "../../assets/12_q80.webp";
       <div class="shrink-0 w-60 aspect-square rounded-2xl overflow-hidden">
         <Image
           src={image12}
-          alt=""
+          alt="Cantine Vedova — packaging 12"
+          loading="lazy"
           width={480}
           class="w-full h-full object-cover"
         />

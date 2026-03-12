@@ -61,13 +61,4 @@ export function createContext(
   return gsap.context(fn, scope);
 }
 
-/**
- * Kill tutti gli ScrollTrigger e pulisci la timeline globale.
- * Usare solo come nuclear option (es. cambio pagina completo).
- */
-export function killAll(): void {
-  ScrollTrigger.getAll().forEach((st) => st.kill());
-  gsap.globalTimeline.clear();
-}
-
 export { gsap, ScrollTrigger };

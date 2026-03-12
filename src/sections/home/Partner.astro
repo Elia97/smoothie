@@ -1,6 +1,6 @@
 ---
 import MarqueeTrack from "../../components/ui/MarqueeTrack.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import logo1 from "../../assets/loghi/228-thelios_q80.webp";
 import logo2 from "../../assets/loghi/De_Rigo_logo_q80.webp";
 import logo3 from "../../assets/loghi/Escada_q80.webp";
@@ -15,7 +15,7 @@ import logo11 from "../../assets/loghi/Philipp_Plein_B_q80.webp";
 import logo12 from "../../assets/loghi/Roberto Cavalli_no eyewear_q80.webp";
 ---
 
-<section class="flex flex-col justify-center gap-12 md:gap-16 overflow-hidden">
+<section id="partner" class="flex flex-col justify-center gap-12 md:gap-16 overflow-hidden">
   <div class="max-w-md mx-auto px-8">
     <span data-motion="fade-in" class="badge">Our client</span>
     <p
