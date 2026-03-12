@@ -9,7 +9,7 @@ const navItems = [
 
 <a
   href="#main-content"
-  class="fixed z-100 -top-full left-1/2 transform -translate-x-1/2 px-4 py-2 bg-background text-foreground rounded-full font-semibold focus:top-4 pointer-events-auto"
+  class="fixed z-9999 -top-full left-1/2 transform -translate-x-1/2 px-4 py-2 bg-background text-foreground rounded-full font-semibold focus:top-4 pointer-events-auto"
 >
   Vai al contenuto principale
 </a>
@@ -48,14 +48,12 @@ const navItems = [
     data-menu-toggle
     aria-label="Apri menu"
     aria-expanded="false"
-    class="lg:hidden pointer-events-auto bg-white rounded-full p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 cursor-pointer"
+    class="lg:hidden pointer-events-auto bg-background rounded-full p-2 flex flex-col justify-center items-center gap-1.5 w-10 h-10 cursor-pointer"
   >
-    <span
-      class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center aria-expanded:rotate-45 aria-expanded:translate-y-0.5"
-      data-line-top></span>
-    <span
-      class="block w-5 h-0.5 bg-black rounded-full transition-transform duration-300 origin-center aria-expanded:-rotate-45 aria-expanded:-translate-y-0.5"
-      data-line-bottom></span>
+    <span aria-hidden="true" class="block w-5 h-0.5 bg-foreground rounded-full"
+    ></span>
+    <span aria-hidden="true" class="block w-5 h-0.5 bg-foreground rounded-full"
+    ></span>
   </button>
 </header>
 
@@ -74,8 +72,8 @@ const navItems = [
   <!-- Sheet -->
   <nav
     data-menu-sheet
-    class="absolute top-0 right-0 bottom-0 w-4/5 max-w-80
-         bg-white rounded-l-2xl
+    class="absolute top-0 right-0 bottom-0 w-3/4 max-w-80
+         bg-background rounded-l-2xl
          translate-x-full transition-transform duration-300 ease-out
          group-data-open:translate-x-0 motion-reduce:transition-none
          flex flex-col h-full"
@@ -85,26 +83,34 @@ const navItems = [
       <button
         data-menu-close
         aria-label="Chiudi menu"
-        class="bg-gray-100 rounded-full p-2 flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
+        class="bg-background rounded-full p-2 flex flex-col justify-center items-center w-10 h-10 cursor-pointer"
       >
         <span
-          class="block w-5 h-0.5 bg-black rounded-full rotate-45 translate-y-px"
+          aria-hidden="true"
+          class="block w-5 h-0.5 bg-foreground rounded-full rotate-45 translate-y-px"
         ></span>
         <span
-          class="block w-5 h-0.5 bg-black rounded-full -rotate-45 -translate-y-px"
+          aria-hidden="true"
+          class="block w-5 h-0.5 bg-foreground rounded-full -rotate-45 -translate-y-px"
         ></span>
       </button>
     </div>
 
     <!-- Navigation -->
-    <ul class="flex flex-col px-8 pt-4">
+    <ul
+      class="flex flex-col px-8 pt-4 absolute top-1/2 transform -translate-y-1/2 uppercase"
+    >
       {
-        navItems.map((item) => (
+        navItems.map((item, index) => (
           <li>
             <a
               href={item.href}
               data-menu-link
-              class="block py-3 text-2xl font-bold text-black tracking-tight transition-colors duration-150 hover:text-gray-500"
+              class={`block py-3 text-3xl font-bold tracking-tight transition-colors duration-150 ${
+                index === 1
+                  ? "text-transparent bg-clip-text bg-linear-to-r from-rose-300 via-violet-500 to-sky-300 hover:from-rose-400 hover:via-violet-600 hover:to-sky-400"
+                  : "hover:text-muted-foreground"
+              }`}
             >
               {item.name}
             </a>
@@ -114,19 +120,19 @@ const navItems = [
     </ul>
 
     <!-- Social (Footer) -->
-    <div class="mt-auto px-8 pb-4">
+    <div class="mt-auto px-4 pb-2">
       <p
-        class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3"
+        class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2"
       >
         Follow us
       </p>
-      <ul class="flex flex-col gap-1">
+      <ul class="flex flex-col">
         <li>
           <a
             href="https://www.instagram.com/smoothie.agency"
             target="_blank"
             rel="noopener noreferrer"
-            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+            class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             Instagram
           </a>
@@ -136,7 +142,7 @@ const navItems = [
             href="https://www.facebook.com/smoothie.agency"
             target="_blank"
             rel="noopener noreferrer"
-            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+            class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             Facebook
           </a>
@@ -146,7 +152,7 @@ const navItems = [
             href="https://www.linkedin.com/company/smoothie-agency"
             target="_blank"
             rel="noopener noreferrer"
-            class="block py-1.5 text-sm text-gray-500 transition-colors duration-150 hover:text-black"
+            class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             LinkedIn
           </a>
@@ -158,6 +164,7 @@ const navItems = [
 
 <script>
   const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+  const sheet = document.querySelector<HTMLElement>("[data-menu-sheet]");
   const toggle = document.querySelector<HTMLElement>("[data-menu-toggle]");
   const backdrop = document.querySelector<HTMLElement>("[data-menu-backdrop]");
   const close = document.querySelector<HTMLElement>("[data-menu-close]");
@@ -180,6 +187,23 @@ const navItems = [
     toggle.focus();
   }
 
+  function trapFocus(e: KeyboardEvent): void {
+    if (e.key !== "Tab" || !sheet || !menu?.hasAttribute("data-open")) return;
+    const focusable = sheet.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])',
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   toggle?.addEventListener("click", () => {
     menu?.hasAttribute("data-open") ? shut() : open();
   });
@@ -190,5 +214,6 @@ const navItems = [
     if (e.key === "Escape" && menu?.hasAttribute("data-open")) {
       shut();
     }
+    trapFocus(e);
   });
 </script>

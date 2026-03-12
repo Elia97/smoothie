@@ -15,20 +15,12 @@ const { title, description } = Astro.props;
   <!-- Loader: visibile subito, rimosso da hero.motion prima dell'intro -->
   <div
     id="page-loader"
-    style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#fff;"
+    role="status"
+    aria-label="Caricamento pagina"
+    class="fixed inset-0 z-9999 flex items-center justify-center bg-white"
   >
-    <div
-      style="width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#000;border-radius:50%;animation:loader-spin .7s linear infinite;"
-    >
-    </div>
+    <div class="size-8 border-3 border-gray-200 border-t-black rounded-full animate-spin"></div>
   </div>
-  <style>
-    @keyframes loader-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
   <Header />
   <main id="main-content" class="relative z-10 bg-background">
     <slot />

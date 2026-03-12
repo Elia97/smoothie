@@ -4,25 +4,83 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title = "Smoothie",
   description = "Smoothie — il giusto mix che ridefinisce i confini del tuo brand.",
+  ogImage = "/og-image.jpg",
 } = Astro.props;
+const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="Smoothie Communicate" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="stylesheet" href="https://use.typekit.net/unv8try.css" />
     <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "Smoothie Communicate",
+        url: canonicalURL,
+        description: description,
+        image: ogImageURL,
+        email: "contact@smoothiecommunicate.com",
+        address: [
+          {
+            "@type": "PostalAddress",
+            streetAddress: "Largo Europa, 20",
+            addressLocality: "Padova",
+            postalCode: "35137",
+            addressCountry: "IT",
+          },
+          {
+            "@type": "PostalAddress",
+            addressLocality: "Milano",
+            addressCountry: "IT",
+          },
+        ],
+        sameAs: [
+          "https://www.instagram.com/smoothiecommunicate",
+          "https://www.facebook.com/smoothiecommunicate",
+          "https://www.linkedin.com/company/smoothiecommunicate",
+        ],
+      })}
+    />
+
     <style>
       /* Anti-FOUC: elementi motion nascosti fino a init GSAP.
          GSAP autoAlpha li rivela (visibility:visible + opacity:1). */

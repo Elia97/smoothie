@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.smoothiecommunicate.com/sitemap-index.xml
