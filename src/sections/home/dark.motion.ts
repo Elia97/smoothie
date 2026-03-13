@@ -24,7 +24,7 @@ export function setupDark(): void {
     const dur = reduced ? 0.15 : DURATION.instant;
 
     // Testo sempre visibile — parte nero, diventa bianco
-    gsap.set(text, { autoAlpha: 1 });
+    gsap.set(text, { opacity: 1 });
 
     const tl = gsap.timeline();
 

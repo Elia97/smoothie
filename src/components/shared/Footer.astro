@@ -1,5 +1,6 @@
 <footer
   id="main-footer"
+  aria-label="Contatti e informazioni"
   class="sticky bottom-0 z-0 bg-foreground text-background"
 >
   <div class="p-8 pb-4">
@@ -18,7 +19,7 @@
           </p>
         </div>
         <div class="flex flex-col gap-6">
-          <form class="flex flex-col sm:flex-row gap-2 max-w-md sm:text-nowrap">
+          <form aria-label="Iscrizione alla newsletter" class="flex flex-col sm:flex-row gap-2 max-w-md sm:text-nowrap">
             <label for="newsletter-email" class="sr-only">Indirizzo email</label
             >
             <input
@@ -86,38 +87,43 @@
       <small class="text-muted">
         &copy; {new Date().getFullYear()} Smoothie. Tutti i diritti riservati.
       </small>
-      <ul class="flex">
-        <li>
-          <a
-            href="https://www.instagram.com/smoothie.agency"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
-          >
-            Instagram
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.facebook.com/smoothie.agency"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
-          >
-            Facebook
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.linkedin.com/company/smoothie-agency"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
-          >
-            LinkedIn
-          </a>
-        </li>
-      </ul>
+      <nav aria-label="Social">
+        <ul class="flex">
+          <li>
+            <a
+              href="https://www.instagram.com/smoothie.agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram (si apre in una nuova finestra)"
+              class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
+            >
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/smoothie.agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook (si apre in una nuova finestra)"
+              class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
+            >
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/smoothie-agency"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn (si apre in una nuova finestra)"
+              class="block px-1 text-sm text-muted transition-colors duration-150 hover:text-background"
+            >
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </footer>

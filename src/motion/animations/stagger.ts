@@ -29,8 +29,8 @@ export function staggerFadeIn(
     .timeline({ paused: true, delay })
     .fromTo(
       targets,
-      { autoAlpha: 0, y },
-      { autoAlpha: 1, y: 0, duration, ease, stagger }
+      { opacity: 0, y },
+      { opacity: 1, y: 0, duration, ease, stagger }
     );
 }
 
@@ -53,8 +53,8 @@ export function staggerSlideUp(
     .timeline({ paused: true, delay })
     .fromTo(
       targets,
-      { autoAlpha: 0, y },
-      { autoAlpha: 1, y: 0, duration, ease, stagger }
+      { opacity: 0, y },
+      { opacity: 1, y: 0, duration, ease, stagger }
     );
 }
 
@@ -77,7 +77,7 @@ export function staggerScaleIn(
     .timeline({ paused: true, delay })
     .fromTo(
       targets,
-      { autoAlpha: 0, scale: from },
-      { autoAlpha: 1, scale: 1, duration, ease, stagger }
+      { opacity: 0, scale: from },
+      { opacity: 1, scale: 1, duration, ease, stagger }
     );
 }

@@ -56,11 +56,11 @@ export function setupHero(): void {
 
   // Hide italic words initially (inline-block needed for transform)
   typeWords.forEach((el) => {
-    gsap.set(el, { display: "inline-block", autoAlpha: 0, scale: 0 });
+    gsap.set(el, { display: "inline-block", opacity: 0, scale: 0 });
   });
 
   // Make title visible (chars/words are individually hidden)
-  gsap.set(title, { autoAlpha: 1 });
+  gsap.set(title, { opacity: 1 });
 
   const reduced = prefersReducedMotion();
 
@@ -70,7 +70,7 @@ export function setupHero(): void {
 
   if (loader) {
     intro.to(loader, {
-      autoAlpha: 0,
+      opacity: 0,
       duration: reduced ? 0.15 : 0.4,
       ease: EASE.smooth,
       onComplete: () => loader.remove(),
@@ -80,10 +80,10 @@ export function setupHero(): void {
   if (reduced) {
     // Reduced motion: show final state immediately, skip typewriter
     allChars.forEach((ch) => (ch.style.visibility = "visible"));
-    gsap.set(typeWords, { autoAlpha: 1, scale: 1 });
-    gsap.set(sphere, { autoAlpha: 1, scale: 1 });
-    if (header) gsap.set(header, { autoAlpha: 1, y: 0 });
-    if (scrollHint) gsap.set(scrollHint, { autoAlpha: 1 });
+    gsap.set(typeWords, { opacity: 1, scale: 1 });
+    gsap.set(sphere, { opacity: 1, scale: 1 });
+    if (header) gsap.set(header, { opacity: 1, y: 0 });
+    if (scrollHint) gsap.set(scrollHint, { opacity: 1 });
     return;
   }
 
@@ -103,7 +103,7 @@ export function setupHero(): void {
       node.hasAttribute("data-type-word")
     ) {
       intro.to(node, {
-        autoAlpha: 1,
+        opacity: 1,
         scale: 1,
         duration: DURATION.fast,
         ease: EASE.bounce,
@@ -114,16 +114,16 @@ export function setupHero(): void {
   // --- Sphere bounce-in after title ---
   intro.fromTo(
     sphere,
-    { autoAlpha: 0, scale: 0 },
-    { autoAlpha: 1, scale: 1, duration: DURATION.hero, ease: EASE.bounce },
+    { opacity: 0, scale: 0 },
+    { opacity: 1, scale: 1, duration: DURATION.hero, ease: EASE.bounce },
     "-=0.3",
   );
 
   if (header) {
     intro.fromTo(
       header,
-      { autoAlpha: 0, y: -20 },
-      { autoAlpha: 1, y: 0, duration: DURATION.fast, ease: EASE.smooth },
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: DURATION.fast, ease: EASE.smooth },
       "-=0.8",
     );
   }
@@ -131,16 +131,16 @@ export function setupHero(): void {
   if (scrollHint) {
     intro.fromTo(
       scrollHint,
-      { autoAlpha: 0 },
-      { autoAlpha: 1, duration: DURATION.fast, ease: EASE.smooth },
+      { opacity: 0 },
+      { opacity: 1, duration: DURATION.fast, ease: EASE.smooth },
     );
   }
 
   // --- Scroll-driven: sphere floats up and fades as section exits ---
-  // Target: wrapper div (y/scale/autoAlpha) — img keeps cursor-follow y separate, no conflict
+  // Target: wrapper div (y/scale/opacity) — img keeps cursor-follow y separate, no conflict
   const scrollTl = gsap.timeline();
   scrollTl.to(sphereExit, {
-    autoAlpha: 0,
+    opacity: 0,
     y: -80,
     scale: 1.15,
     duration: 1,

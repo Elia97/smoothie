@@ -56,11 +56,11 @@ export function setupSphere(): void {
     const orbEndY = -orbStartY;
 
     // ── Stato iniziale ──────────────────────────────────────────────────────────
-    gsap.set(badge, { autoAlpha: 1 });
-    gsap.set(titles, { autoAlpha: 0, y: 40 });
+    gsap.set(badge, { opacity: 1 });
+    gsap.set(titles, { opacity: 0, y: 40 });
     gsap.set(orb, { y: orbStartY, rotation: 0 });
-    gsap.set(inner, { autoAlpha: 0, y: 30 });
-    gsap.set(cta, { autoAlpha: 0, y: 30 });
+    gsap.set(inner, { opacity: 0, y: 30 });
+    gsap.set(cta, { opacity: 0, y: 30 });
 
     const tl = gsap.timeline();
 
@@ -72,7 +72,7 @@ export function setupSphere(): void {
       const offset = i * titleStagger;
       tl.to(
         title,
-        { autoAlpha: 1, y: 0, duration: dur, ease: EASE.snap },
+        { opacity: 1, y: 0, duration: dur, ease: EASE.snap },
         offset,
       );
       tl.to(
@@ -88,7 +88,7 @@ export function setupSphere(): void {
 
     // Titoli svaniscono dopo l'ultimo
     const fadeOutAt = titlePhaseDur + dur * 0.5;
-    tl.to(titlesWrap, { autoAlpha: 0, y: -40, duration: dur, ease }, fadeOutAt);
+    tl.to(titlesWrap, { opacity: 0, y: -40, duration: dur, ease }, fadeOutAt);
 
     // ── Fase 2: sfera sale al centro — contenuto interno entra ed esce ──────────
     const riseAt = fadeOutAt + dur * 0.5;
@@ -100,8 +100,8 @@ export function setupSphere(): void {
       { y: 0, rotation: 540, duration: dur * 4, ease: EASE.inOut },
       riseAt,
     );
-    tl.to(inner, { autoAlpha: 1, y: 0, duration: dur, ease }, innerAt);
-    tl.to(inner, { autoAlpha: 0, y: -30, duration: dur, ease }, innerOut);
+    tl.to(inner, { opacity: 1, y: 0, duration: dur, ease }, innerAt);
+    tl.to(inner, { opacity: 0, y: -30, duration: dur, ease }, innerOut);
 
     // ── Fase 3: sfera esce verso l'alto — CTA appare ────────────────────────────
     tl.to(
@@ -109,7 +109,7 @@ export function setupSphere(): void {
       { y: orbEndY, rotation: 660, duration: dur * 4, ease: EASE.inOut },
       innerOut,
     );
-    tl.to(cta, { autoAlpha: 1, y: 0, duration: dur, ease }, innerOut + dur * 3);
+    tl.to(cta, { opacity: 1, y: 0, duration: dur, ease }, innerOut + dur * 3);
 
     createScrollAnimation({
       trigger: section,

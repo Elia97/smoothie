@@ -37,16 +37,16 @@ export function setupShowcase(): void {
     const tl = gsap.timeline();
 
     // Stato iniziale
-    gsap.set(images, { autoAlpha: 0, scale: 0.8 });
-    if (slider) gsap.set(slider, { autoAlpha: 0, scale: 0.8 });
-    if (finalText) gsap.set(finalText, { autoAlpha: 0, x: 40 });
+    gsap.set(images, { opacity: 0, scale: 0.8 });
+    if (slider) gsap.set(slider, { opacity: 0, scale: 0.8 });
+    if (finalText) gsap.set(finalText, { opacity: 0, x: 40 });
 
     // ── Fase 1: Reveal immagini, slider per ultimo ──
     images.forEach((img, i) => {
       tl.fromTo(
         img,
-        { autoAlpha: 0, scale: 0.8 },
-        { autoAlpha: 1, scale: 1, duration: dur, ease },
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: dur, ease },
         i === 0 ? 0 : `<0.15`,
       );
     });
@@ -54,8 +54,8 @@ export function setupShowcase(): void {
     if (slider) {
       tl.fromTo(
         slider,
-        { autoAlpha: 0, scale: 0.8 },
-        { autoAlpha: 1, scale: 1, duration: dur, ease },
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: dur, ease },
         `<0.15`,
       );
     }
@@ -66,7 +66,7 @@ export function setupShowcase(): void {
     tl.to(
       [...images, content].filter(Boolean),
       {
-        autoAlpha: 0,
+        opacity: 0,
         duration: dur,
         ease: reduced ? EASE.linear : EASE.smooth,
         onComplete: () => content?.setAttribute("aria-hidden", "true"),
@@ -104,9 +104,9 @@ export function setupShowcase(): void {
     if (finalText) {
       tl.fromTo(
         finalText,
-        { autoAlpha: 0 },
+        { opacity: 0 },
         {
-          autoAlpha: 1,
+          opacity: 1,
           duration: dur,
           ease: reduced ? EASE.linear : EASE.smooth,
           onComplete: () => finalText.setAttribute("aria-hidden", "false"),

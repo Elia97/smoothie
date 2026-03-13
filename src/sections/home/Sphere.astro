@@ -9,7 +9,8 @@ import sferaImage from "../../assets/sfera.webp";
     <Image
       data-sphere-orb
       src={sferaImage}
-      alt="Sfera"
+      alt=""
+      role="presentation"
       width={1440}
       loading="lazy"
       class="absolute max-w-none w-[140vw] h-[140vw]"
@@ -55,7 +56,6 @@ import sferaImage from "../../assets/sfera.webp";
     >
       <span class="badge border-white"> Our mission </span>
       <h2
-        aria-label="Guidare la crescita delle aziende con innovazione, creatività e tecnologia"
         class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-8"
       >
         Guidare la crescita <br /> delle aziende con <br /> innovazione, creatività
@@ -69,12 +69,11 @@ import sferaImage from "../../assets/sfera.webp";
       class="absolute z-10 flex flex-col items-center gap-6 text-center px-4"
     >
       <p
-        aria-label="Ready to shake things up?"
         class="text-3xl sm:text-5xl lg:text-6xl font-bold text-center leading-snug tracking-tight"
       >
         Ready to shake <br /> things up?
       </p>
-      <a href="/contact" aria-label="contact us" class="btn-primary"
+      <a href="/contact" class="btn-primary"
         >Contact us</a
       >
     </div>

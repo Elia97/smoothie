@@ -9,7 +9,7 @@ const navItems = [
 
 <a
   href="#main-content"
-  class="fixed z-9999 -top-full left-1/2 transform -translate-x-1/2 px-4 py-2 bg-background text-foreground rounded-full font-semibold focus:top-4 pointer-events-auto"
+  class="fixed z-9999 -translate-y-full left-1/2 -translate-x-1/2 px-6 pt-3 pb-2 bg-foreground text-background rounded-full font-semibold transition-transform duration-200 focus-visible:translate-y-4 outline-none"
 >
   Vai al contenuto principale
 </a>
@@ -25,14 +25,13 @@ const navItems = [
   >
 
   <!-- Desktop nav -->
-  <nav class="hidden lg:block bg-background pointer-events-auto rounded-full">
+  <nav aria-label="Navigazione principale" class="hidden lg:block bg-background pointer-events-auto rounded-full">
     <ul class="flex rounded-full">
       {
         navItems.map((item) => (
           <li>
             <a
               href={item.href}
-              aria-label={item.name.toLowerCase()}
               class="flex items-center p-3 pb-2 text-sm font-semibold tracking-wider transition-colors duration-150 hover:text-muted-foreground rounded-full"
             >
               {item.name}
@@ -60,6 +59,9 @@ const navItems = [
 <!-- Mobile menu sheet -->
 <div
   data-mobile-menu
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu di navigazione"
   class="group fixed inset-0 z-50 pointer-events-none invisible data-open:pointer-events-auto data-open:visible lg:hidden"
 >
   <!-- Backdrop -->
@@ -72,6 +74,7 @@ const navItems = [
   <!-- Sheet -->
   <nav
     data-menu-sheet
+    aria-label="Menu mobile"
     class="absolute top-0 right-0 bottom-0 w-3/4 max-w-80
          bg-background rounded-l-2xl
          translate-x-full transition-transform duration-300 ease-out
@@ -132,6 +135,7 @@ const navItems = [
             href="https://www.instagram.com/smoothie.agency"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram (si apre in una nuova finestra)"
             class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             Instagram
@@ -142,6 +146,7 @@ const navItems = [
             href="https://www.facebook.com/smoothie.agency"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook (si apre in una nuova finestra)"
             class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             Facebook
@@ -152,6 +157,7 @@ const navItems = [
             href="https://www.linkedin.com/company/smoothie-agency"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn (si apre in una nuova finestra)"
             class="block py-1 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             LinkedIn
@@ -170,13 +176,26 @@ const navItems = [
   const close = document.querySelector<HTMLElement>("[data-menu-close]");
   const links = document.querySelectorAll<HTMLElement>("[data-menu-link]");
 
+  function getFocusable(): HTMLElement[] {
+    if (!sheet) return [];
+    return Array.from(
+      sheet.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])',
+      ),
+    );
+  }
+
   function open(): void {
     if (!menu || !toggle) return;
     menu.setAttribute("data-open", "");
     toggle.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
-    const firstLink = menu.querySelector<HTMLElement>("[data-menu-link]");
-    firstLink?.focus();
+    // rAF: attendere che data-open:visible sia applicato dal CSS
+    // prima di spostare il focus (focus() fallisce su elementi invisible)
+    requestAnimationFrame(() => {
+      const firstLink = menu.querySelector<HTMLElement>("[data-menu-link]");
+      firstLink?.focus();
+    });
   }
 
   function shut(): void {
@@ -188,13 +207,20 @@ const navItems = [
   }
 
   function trapFocus(e: KeyboardEvent): void {
-    if (e.key !== "Tab" || !sheet || !menu?.hasAttribute("data-open")) return;
-    const focusable = sheet.querySelectorAll<HTMLElement>(
-      'a[href], button, [tabindex]:not([tabindex="-1"])',
-    );
+    if (e.key !== "Tab" || !menu?.hasAttribute("data-open")) return;
+    const focusable = getFocusable();
     if (!focusable.length) return;
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
+
+    // Se il focus è fuori dallo sheet (es. ancora sull'hamburger),
+    // forzalo dentro al primo elemento
+    if (!sheet?.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+      return;
+    }
+
     if (e.shiftKey && document.activeElement === first) {
       e.preventDefault();
       last.focus();

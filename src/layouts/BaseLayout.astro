@@ -11,7 +11,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title = "Smoothie",
   description = "Smoothie — il giusto mix che ridefinisce i confini del tuo brand.",
-  ogImage = "/og-image.jpg",
+  ogImage = "/og-image.png",
 } = Astro.props;
 const ogImageURL = new URL(ogImage, Astro.site);
 ---
@@ -83,7 +83,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
     <style>
       /* Anti-FOUC: elementi motion nascosti fino a init GSAP.
-         GSAP autoAlpha li rivela (visibility:visible + opacity:1). */
+         Usa opacity (non visibility) per restare nell'accessibility tree. */
       [data-motion],
       [data-motion-item],
       [data-cursor-target],
@@ -96,7 +96,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
       [data-hero-title],
       [data-hero-header],
       [data-hero-scroll-hint] {
-        visibility: hidden;
+        opacity: 0;
       }
     </style>
   </head>
@@ -115,7 +115,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
         [data-hero-title],
         [data-hero-header],
         [data-hero-scroll-hint] {
-          visibility: visible !important;
+          opacity: 1 !important;
         }
         #page-loader {
           display: none !important;
